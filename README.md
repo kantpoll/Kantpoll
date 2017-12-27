@@ -1,0 +1,2 @@
+# kantcoin
+Kantcoin Project
