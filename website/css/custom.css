@@ -1,0 +1,336 @@
+/**
+ * Kantcoin Project
+ * https://kantcoin.org
+ */
+
+#header_container{
+    padding-top: 0;
+}
+
+#header_title{
+    font-weight: lighter;
+    padding-bottom: 10px;
+}
+
+#lighter_text {
+    font-weight: lighter;
+}
+
+#logo_container{
+    font-weight: lighter;
+}
+
+#kantcoin_org_side_nav_user{
+    margin-left: 5px;
+}
+
+#slide_out1{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#search_container{
+    height: 34px;
+}
+
+#search{
+    border-bottom: none!important;
+    box-shadow: none!important;
+    height: 100%;
+}
+
+#search_link{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#dropdown_button{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#copyright_container{
+    margin-left: 5%;
+}
+
+#copyright_container2{
+    vertical-align: bottom;
+    height: 100%;
+}
+
+#blue_footer{
+    height: 50px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#menu_vault_li{
+    color: #aaaaaa;
+    cursor: default;
+    text-align: center;
+    background-color: white;
+}
+
+#menu_campaign_li{
+    color: #aaaaaa;
+    cursor: default;
+    text-align: center;
+    background-color: white;
+}
+
+#content_navigation{
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+#content_header{
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 15px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#content_page{
+    padding-right: 5%;
+    padding-left: 5%;
+    overflow: hidden;
+}
+
+#campaign_card_image{
+    height: 100%;
+    max-height: 430px;
+    overflow: hidden;
+}
+
+#create_campaign_title{
+    padding-bottom: 6px;
+}
+
+#tabs_space{
+    padding-bottom: 6px;
+}
+
+#external_link_container{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#campaign_card_image{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#candidates_thead{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#accepted_donation_values{
+    padding-top: 15px;
+}
+
+#seconds_to_conclude_groups_creation{
+    padding-top: 15px;
+}
+
+#groups_value{
+    padding-top: 15px;
+}
+
+#groups_chairperson{
+    padding-top: 15px;
+}
+
+#how_many_groups{
+    padding-top: 15px;
+}
+
+#candidates_tbody{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#parties_tbody{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#disabled_button{
+    pointer-events: none;
+    cursor: default;
+}
+
+#menu_dropdown{
+    width: 100px;
+    padding-right: 5%;
+    align-content: right;
+}
+
+#menu_img_container{
+    width: 100px;
+    align-content: right;
+}
+
+#vault_icon_container{
+    padding-right: 4%;
+}
+
+#alertKey{
+    padding-right: 3%;
+}
+
+#campaign_admin_tabs{
+    overflow: hidden;
+}
+
+.button_hider a{
+    visibility: hidden;
+}
+
+.button_hider:hover a{
+    visibility: visible;
+}
+
+.candidates_page_items_img{
+    width: 70px;
+    height: 70px;
+}
+
+.parties_page_items_img{
+    width: 70px;
+    height: 70px;
+}
+
+.collapsible-header{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.collection-header{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.collapsible-body{
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 1080px){
+    #circle_icon{
+        display: none;
+    }
+    #balance_icon{
+        display: none;
+    }
+    #dashboard_icon{
+        display: none;
+    }
+    #monetization_icon{
+        display: none;
+    }
+    #info_icon{
+        display: none;
+    }
+    #question_icon{
+        display: none;
+    }
+    #touch_icon{
+        display: none;
+    }
+    #assessment_icon{
+        display: none;
+    }
+    #people_icon{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1355px){
+    #user_icon{
+        display: none;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1280px){
+    #slide_out2{
+        width: 4%;
+    }
+    #slide_out1{
+        width: 22%;
+    }
+    .container{
+        min-width: 74%;
+        margin-left: 22%;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1600px){
+    #slide_out2{
+        width: 10%;
+    }
+    #slide_out1{
+        width: 20%;
+    }
+    .container{
+        min-width: 70%;
+        margin-left: 20%;
+    }
+
+}
+
+@media (min-width: 1601px) and (max-width: 1900px){
+    #slide_out2{
+        width: 12%;
+    }
+    #slide_out1{
+        width: 18%;
+    }
+    .container{
+        min-width: 70%;
+        margin-left: 18%;
+    }
+}
+
+@media (min-width: 1901px) and (max-width: 2200px){
+    #slide_out2{
+        width: 14%;
+    }
+    #slide_out1{
+        width: 16%;
+    }
+    .container{
+        min-width: 70%;
+        margin-left: 16%;
+    }
+
+}
+
+@media (min-width: 2201px){
+    #slide_out2{
+        width: 15%;
+    }
+    #slide_out1{
+        width: 15%;
+    }
+    .container{
+        min-width: 70%;
+        margin-left: 15%;
+    }
+}
+
+.accordion_header{
+    color: slategrey;
+}
