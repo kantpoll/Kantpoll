@@ -1,0 +1,41 @@
+{
+  "name": "Kantcoin",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Kantcoin Extension",
+  "omnibox": { "keyword" : "kant" },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "Kantcoin"
+  },
+  "permissions": [
+    "tabs",
+    "webNavigation",
+    "webRequest",
+    "storage"
+  ],
+  "icons": {
+    "16": "imgs/icon16_15.png",
+    "48": "imgs/icon48_44.png",
+    "72": "imgs/icon72_66.png",
+    "128": "imgs/icon128_118.png"
+  },
+  "web_accessible_resources": [
+    "*.woff2",
+    "*.woff",
+    "*.png",
+    "*.ttf"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:1985/*"],
+      "js": ["background.js"]
+    }
+  ],
+  "content_security_policy": "script-src http://localhost:1985; style-src http://localhost:1985 'unsafe-inline'; child-src 'none'; object-src 'none'; form-action http://localhost:1985; connect-src http://localhost:1985 http://localhost:8080 http://localhost:8545 https://ipfs.io; worker-src 'none'"
+}
