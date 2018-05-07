@@ -2,7 +2,7 @@
 
 On May 12, 2018, the Iraqis will choose their next representatives in what will be the fourth multiparty election after 2003. Fortunately, they are realizing that resolving conflicts through politics is the best way to avoid violence and chaos.
 
-Meanwhile, in the West, people are **losing their faith in democracy**. As stated in an [article](https://www.economist.com/news/essays/21596796-democracy-was-most-successful-political-idea-20th-century-why-has-it-run-trouble-and-what-can-be-do) from The Economist:
+Meanwhile, in the West, people are **losing their faith in democracy**. As stated in this [article](https://www.economist.com/news/essays/21596796-democracy-was-most-successful-political-idea-20th-century-why-has-it-run-trouble-and-what-can-be-do):
 > Faith in democracy flares up in moments of triumph, such as the overthrow of unpopular regimes in Cairo or Kiev, only to sputter out once again. Outside the West, democracy often advances only to collapse. And within the West, democracy has too often become associated with debt and dysfunction at home and overreach abroad. Democracy has always had its critics, but now old doubts are being treated with renewed respect as the weaknesses of democracy in its Western strongholds, and the fragility of its influence elsewhere, have become increasingly apparent. Why has democracy lost its forward momentum?
 
 We think that one of the reasons for this is the **lack of innovation**.
