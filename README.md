@@ -17,6 +17,6 @@ Before Wikipedia, people would hardly believe that accurate and complete informa
 
 Democracy has an **advantage** compared to centralized regimes. People like to know they have influence on the future of their communities and nations. Therefore, it is really sad when citizens, in democratic countries, feel unrepresented and ignored by their politicians.
 
-We need **open-source platforms** to spillover innovation across democracies and to face the criticisms that democracy rightly receives. Centralized regimes are investing in artificial intelligence big data, and all sort of technologies available. **_Will democracies be stuck in the past?_**
+We need **open-source platforms** to spillover innovation across democracies and to face the criticisms democracy rightly receives. Centralized regimes are investing in artificial intelligence big data, and all sort of technologies available. **_Will democracies be stuck in the past?_**
 
 Let's use technology to _increase interest_ in politics among citizens, to _encourage participation_ in elections, and to _favor cooperation_ over conflict. We believe that all this is possible. The Kantcoin Project was created to champion **transparency** and **representativeness** in politics. We hope our contribution will help democracy thrive. 
