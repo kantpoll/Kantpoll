@@ -1,8 +1,22 @@
-Hi there.
+# Introduction
 
-We are following this [guide](https://opensource.guide/starting-a-project) to ensure that this project will conform to the best practices. 
-We will certainly need a lot of help from you with the code, translations... everything.
+On May 12, 2018, the Iraqis will choose their next representatives in what will be the fourth multiparty election after 2003. Fortunately, they are realizing that resolving conflicts through politics is the best way to avoid violence and chaos.
 
-[Here](https://medium.com/@thiagoqgomes/kantcoin-an-e-politics-project-5a3c86734195) you can find the purpose of this project.
+Meanwhile, in the West, people are **losing their faith in democracy**. As stated in an [article](https://www.economist.com/news/essays/21596796-democracy-was-most-successful-political-idea-20th-century-why-has-it-run-trouble-and-what-can-be-do) from The Economist:
+> Faith in democracy flares up in moments of triumph, such as the overthrow of unpopular regimes in Cairo or Kiev, only to sputter out once again. Outside the West, democracy often advances only to collapse. And within the West, democracy has too often become associated with debt and dysfunction at home and overreach abroad. Democracy has always had its critics, but now old doubts are being treated with renewed respect as the weaknesses of democracy in its Western strongholds, and the fragility of its influence elsewhere, have become increasingly apparent. Why has democracy lost its forward momentum?
 
-See an overview of our project on the Wiki tab.
+We think that one of the reasons for this is the **lack of innovation**.
+
+In the old days, in Athens, democracy was identified with sortition, a kind of lottery in which people were selected randomly to occupy public positions. The American Revolution brought us the modern representative democracy in the end of the 18th century. Little has changed since then in relation to the _algorithm_ behind the selection of government officials.
+
+There are differences between electoral systems. Some of them are comprehensible, for example, the two-round system in multiparty democracies. Other features of the electoral systems seem a bit arbitrary, such as the methods for allocating seats in parliament. Few of them, however, reflect the technological advances of the last decades.
+
+As you know, technology has changed the way we _communicate_, the way we _learn_ and _work_, but the way we _vote_ remains virtually unchanged. Although, in some countries, people can vote from home, this is far from taking full advantage of widespread technologies. For most people, voting is a tedious and pro forma task.
+
+Before Wikipedia, people would hardly believe that accurate and complete information could emerge from the cooperation of thousands of anonymous individuals on the Internet [(link)](http://www.businessinsider.com/henry-blodget-sorry-britannica-wikipedias-not-only-bigger-but-better-2009-4). Nowadays, we can find disbelief in the capacity of democracy to well organize society. This disbelief is common in countries like China, where its political and economic elite claims for more centralization and uniformity. [(link)](https://www.ft.com/content/c4df31cc-4d26-11e8-97e4-13afc22d86d4)  How can we show them the merits of our system when even among us there are serious concerns about the dysfunctionality of it?
+
+Democracy has an **advantage** compared to centralized regimes. People like to know they have influence on the future of their communities and nations. Therefore, it is really sad when citizens, in democratic countries, feel unrepresented and ignored by their politicians.
+
+We need **open-source platforms** to spillover innovation across democracies and to face the criticisms that democracy rightly receives. Centralized regimes are investing in artificial intelligence big data, and all sort of technologies available. **_Will democracies be stuck in the past?_**
+
+Let's use technology to _increase interest_ in politics among citizens, to _encourage participation_ in elections, and to _favor cooperation_ over conflict. We believe that all this is possible. The Kantcoin Project was created to champion **transparency** and **representativeness** in politics. We hope our contribution will help democracy thrive. 
