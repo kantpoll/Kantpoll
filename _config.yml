@@ -4,4 +4,4 @@ description: A free and open-source election management system
 favicon: logo.ico
 email: contact@kantcoin.org
 url: https://kantcoin.org
-baseurl: 
+category_dir: /
