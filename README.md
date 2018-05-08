@@ -1,7 +1,5 @@
 # About us 
 
-## A principled project
-
 [Kantcoin](https://kantcoin.org) is a free and open-source election management system guided by the following principles:
 
 ## Our principles
@@ -19,7 +17,7 @@
 * **Flexibility** - there is no ideal format for a campaign, the code must be open to innovation.
 
 ## Table of Contents
-1. [A principled project](#a-principled-project)
+1. [About us](#about-us)
 2. [Our principles](#our-principles)
 3. [Motivation](#motivation)
 4. [How it works](#how-it-works)
