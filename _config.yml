@@ -1,7 +1,4 @@
 theme: jekyll-theme-minimal
-use_logo: true
-logo: logo.ico
 favicon: logo.ico
-breadcrumb_display: true
-breadcrumb_home_display: true
-breadcrumb_home_url: https://kantcoin.org
+title: Kantcoin
+description: About
