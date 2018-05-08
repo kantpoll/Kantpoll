@@ -1,6 +1,6 @@
 # A principled project
 
-Kantcoin is a free and open-source election management system guided by the following principles:
+[Kantcoin](https://kantcoin.org) is a free and open-source election management system guided by the following principles:
 
 # Our principles
 
