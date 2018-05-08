@@ -2,4 +2,5 @@ theme: jekyll-theme-minimal
 favicon: logo.ico
 logo: logo.ico
 title: [logo] Kantcoin
+description: A free and open-source election management system
 use_text_title: true
