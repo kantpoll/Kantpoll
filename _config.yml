@@ -1,1 +1,3 @@
 theme: jekyll-theme-minimal
+use_logo: true
+logo: logo.ico
