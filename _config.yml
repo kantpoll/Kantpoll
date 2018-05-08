@@ -1,6 +1,5 @@
 theme: jekyll-theme-minimal
 title: Kantcoin
 description: A free and open-source election management system
-path: /
 url: https://kantcoin.org
-logo: logo.ico
+logo: logo.png
