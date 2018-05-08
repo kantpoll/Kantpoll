@@ -20,6 +20,7 @@ Kantcoin is a free and open-source election management system guided by the foll
 1. [A principled project](#a-principled-project)
 2. [Our principles](#our-principles)
 3. [Motivation](#motivation)
+4. [How it works](#how-it-works)
 
 # Motivation
 
@@ -42,4 +43,6 @@ Democracy has an **advantage** compared to centralized regimes. People like to k
 
 We need **open-source platforms** to spillover innovation across democracies and to face the criticisms democracy rightly receives. Centralized regimes are investing in artificial intelligence, big data, and all sort of technologies available. **_Will democracies be stuck in the past?_**
 
-Let's use technology to _increase interest_ in politics among citizens, to _encourage participation_ in elections, and to _favor cooperation_ over conflict. We believe that all this is possible. The Kantcoin Project was created to champion **transparency** and **representativeness** in politics. We hope our contribution will help democracy thrive. 
+Let's use technology to _increase interest_ in politics among citizens, to _encourage participation_ in elections, and to _favor cooperation_ over conflict. We believe that all this is possible. The Kantcoin Project was created to champion **transparency** and **representativeness** in politics. We hope our contribution will help democracy thrive.
+
+# How it works
