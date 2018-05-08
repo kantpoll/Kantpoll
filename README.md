@@ -1,8 +1,10 @@
-# A principled project
+# About us 
+
+## A principled project
 
 [Kantcoin](https://kantcoin.org) is a free and open-source election management system guided by the following principles:
 
-# Our principles
+## Our principles
 
 * **Transparency** - people should not be fooled or manipulated.
 * **Privacy** - people should not fear being observed, measured and analysed.
@@ -16,13 +18,13 @@
 * **Scalability** - which ensures that campaigns will be processed efficiently.
 * **Flexibility** - there is no ideal format for a campaign, the code must be open to innovation.
 
-# Table of Contents
+## Table of Contents
 1. [A principled project](#a-principled-project)
 2. [Our principles](#our-principles)
 3. [Motivation](#motivation)
 4. [How it works](#how-it-works)
 
-# Motivation
+## Motivation
 
 On May 12, 2018, the Iraqis will choose their next representatives in what will be the fourth multiparty election after 2003. Fortunately, they are realizing that resolving conflicts through politics is the best way to avoid violence and chaos.
 
@@ -45,4 +47,4 @@ We need **open-source platforms** to spillover innovation across democracies and
 
 Let's use technology to _increase interest_ in politics among citizens, to _encourage participation_ in elections, and to _favor cooperation_ over conflict. We believe that all this is possible. The Kantcoin Project was created to champion **transparency** and **representativeness** in politics. We hope our contribution will help democracy thrive.
 
-# How it works
+## How it works
