@@ -2,3 +2,4 @@ theme: jekyll-theme-minimal
 favicon: logo.ico
 logo: logo.ico
 title: [logo] Kantcoin
+use_text_title: true
