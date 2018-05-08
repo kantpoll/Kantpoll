@@ -1,4 +1,3 @@
-<dl><link rel="shortcut icon" type="image/x-icon" href="logo.ico"></dl>
 # A principled project
 
 Kantcoin is a free and open-source election management system guided by the following principles:
