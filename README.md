@@ -17,9 +17,9 @@ Kantcoin is a free and open-source election management system guided by the foll
 * Flexibility - there is no ideal format for a campaign, the code must be open to innovation.
 
 # Table of Contents
-1. [A principled project](#A-principled-project)
-2. [Our principles](#Our-principles)
-3. [Motivation](#Motivation)
+1. [A principled project](#a-principled-project)
+2. [Our principles](#our-principles)
+3. [Motivation](#motivation)
 
 # Motivation
 
