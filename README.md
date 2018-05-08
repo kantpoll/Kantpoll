@@ -4,17 +4,17 @@ Kantcoin is a free and open-source election management system guided by the foll
 
 # Our principles
 
-* Transparency - people should not be fooled or manipulated.
-* Privacy - people should not fear being observed, measured and analysed.
-* Anonymity - which ensures that people will not be subjected to sanctions or reprimands.
-* Safety - protection of voters' data and communications.
-* Decentralization - data about campaigns and candidates should not be subject to censorship.
-* Internationalization - language should not be an obstacle to voter participation.
-* Representativeness - technology should help to bring closer voters to candidates.
-* Participation - it increases the legitimacy of an electoral campaign. 
-* Simplicity - everyone should be able to vote and every organization should be able to create a campaign.
-* Scalability - which ensures that campaigns will be processed efficiently.
-* Flexibility - there is no ideal format for a campaign, the code must be open to innovation.
+* **Transparency** - people should not be fooled or manipulated.
+* **Privacy** - people should not fear being observed, measured and analysed.
+* **Anonymity** - which ensures that people will not be subjected to sanctions or reprimands.
+* **Safety** - protection of voters' data and communications.
+* **Decentralization** - data about campaigns and candidates should not be subject to censorship.
+* **Internationalization** - language should not be an obstacle to voter participation.
+* **Representativeness** - technology should help to bring closer voters to candidates.
+* **Participation** - it increases the legitimacy of an electoral campaign. 
+* **Simplicity** - everyone should be able to vote and every organization should be able to create a campaign.
+* **Scalability** - which ensures that campaigns will be processed efficiently.
+* **Flexibility** - there is no ideal format for a campaign, the code must be open to innovation.
 
 # Table of Contents
 1. [A principled project](#a-principled-project)
