@@ -45,3 +45,5 @@ We need **open-source platforms** to spillover innovation across democracies and
 Let's use technology to _increase interest_ in politics among citizens, to _encourage participation_ in elections, and to _favor cooperation_ over conflict. We believe that all this is possible. The Kantcoin Project was created to champion **transparency** and **representativeness** in politics. We hope our contribution will help democracy thrive.
 
 ## How it works
+
+![alt text] (https://github.com/kantcoin/Kantcoin/infochart1.jpg)
