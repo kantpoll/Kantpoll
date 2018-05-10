@@ -46,4 +46,4 @@ Let's use technology to _increase interest_ in politics among citizens, to _enco
 
 ## How it works
 
-![alt text](https://github.com/kantcoin/Kantcoin/infochart1.jpg)
+![Kantcoin network infochart](https://github.com/kantcoin/Kantcoin/infochart1.jpg)
