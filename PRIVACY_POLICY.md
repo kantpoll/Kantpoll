@@ -10,11 +10,13 @@ If you choose to use my Service, then you agree to the collection and use of inf
 
 For a better experience, while using our Service, I may require you to provide us an e-mail or phone number. The information that I request is stored on our databases with a public key (address) and a timestamp. This public key allows you to participate in campaigns that can be searched on our website.
 
-The app doesn't allow scripts from other domains from being executed on our page. However, the app does use third party services that may collect information used to identify you. These services, notwithstanding, will be executed in another page, in order to protect your information.
+The app doesn't allow scripts from other domains from being executed on our page. However, the app does use third party services that may collect information used to identify you. These services, notwithstanding, will be executed in another page, in order to protect your private information.
 
 Link to privacy policy of third party service providers used by the app:
 
-https://www.google.com/policies/privacy/ https://www.account-kit.com/privacy
+* https://www.google.com/policies/privacy/
+* https://www.account-kit.com/privacy
+* https://aws.amazon.com/compliance/data-privacy-faq/
 
 ## Cookies
 
