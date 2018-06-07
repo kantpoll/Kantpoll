@@ -164,5 +164,6 @@ who have successfully registered without coercion can convincingly pretend to vo
 a subsequent coercers wishes while secretly voting their own true preferences. It may be possible
 to leverage this approach by allowing voters who have been coerced during registration to quietly
 invalidate their coerced credentials at some later opportunity and to receive new valid credentials.
+
 For this reason, we have implemented a way to secretly, outside the blockchain, cancel votes. While the blockchain and URS are intended to protect voters against the government, this step is intended to protect voters against society.
 
