@@ -154,3 +154,15 @@ The confirmation step occurs after the round (ballot) is stopped by the creator 
 
 In order for the votes to be assigned to candidates, the creator of the campaign should first close the round. Then, group administrators should call the "send votes", "pre-commit", and "commit" methods.
 
+### Vote cancellation
+
+An important concern about e-voting schemes is the possibility of coercion and vote-selling. According to this [article](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/11/rvc-jets0101.pdf):
+> It is more than a little surprising to think that the best defense against coercion today may not
+be found in an in-person voting system. Instead, the approach that offers the most resistance to
+coercion may be a remote voting system using the paradigm of in which voters
+who have successfully registered without coercion can convincingly pretend to vote according to
+a subsequent coercers wishes while secretly voting their own true preferences. It may be possible
+to leverage this approach by allowing voters who have been coerced during registration to quietly
+invalidate their coerced credentials at some later opportunity and to receive new valid credentials.
+For this reason, we have implemented a way to secretly, outside the blockchain, cancel votes. While the blockchain and URS are intended to protect voters against the government, this step is intended to protect voters against society.
+
