@@ -107,7 +107,7 @@ Most of e-voting systems today rely on authentication by verifying user's face a
 In order to make this work, we have created the role of the "login provider", a service that is external to the open-source project (kantcoin.org). In our case (kantcoin.com), a service that uses Amazon's Lambda and DynamoDB. 
 The idea is that the creator of the campaign can freely choose the login provider. For example, he or she could use as login provider a service offered by their country's electoral authority, allowing voters to log in (which in our project means to create a "vault" whose public key (address) is stored in the login provider's database) with their electoral document.
 
-There are two other options to register voters which are intended to be used by medium and small campaigns. Voters can be directly inserted by campaign creators (for small campaigns) or they can be given e-mails of a certain domain, say, voter@somecampaign.com. This e-mail should be then validated before the voter registration.
+There are two other options to register voters which are intended to be used by medium and small campaigns. Voters can be directly inserted by campaign creators (for small campaigns) or they can be given e-mails of a certain domain, say, voter@somecampaign.com. This e-mail must then be validated, by regular expression, before the voter registration.
 
 ### Giving the right to vote
 
