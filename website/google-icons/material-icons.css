@@ -9,7 +9,7 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(http://localhost:1985/google-icons/material-icons.woff2) format('woff2');
+  src: url("../google-icons/material-icons.woff2") format('woff2');
 }
 
 .material-icons {

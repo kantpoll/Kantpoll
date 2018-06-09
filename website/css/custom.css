@@ -1,7 +1,23 @@
 /**
  * Kantcoin Project
  * https://kantcoin.org
+ * This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+ * If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
+
+:root{
+    --background-user-img: none;
+}
+
+#user_view{
+    background-image: var(--background-user-img);
+    overflow: hidden;
+}
+
+#config_icon{
+    padding-top: 13px;
+    padding-right: 20%;
+}
 
 #header_container{
     padding-top: 0;
@@ -9,11 +25,8 @@
 
 #header_title{
     font-weight: lighter;
+    text-shadow: 2px 1px 3px lightgrey;
     padding-bottom: 10px;
-}
-
-#lighter_text {
-    font-weight: lighter;
 }
 
 #logo_container{
@@ -22,12 +35,25 @@
 
 #kantcoin_org_side_nav_user{
     margin-left: 5px;
+    overflow: hidden;
+}
+
+#user_chip{
+    overflow: hidden;
 }
 
 #slide_out1{
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    background-color: #f5f7f9;
+}
+
+#slide_out2{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    background-color: #f5f7f9;
 }
 
 #search_container{
@@ -35,7 +61,7 @@
 }
 
 #search{
-    border-bottom: none!important;
+    border-bottom: 1px solid lightgrey!important;
     box-shadow: none!important;
     height: 100%;
 }
@@ -44,6 +70,10 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+}
+
+#search_icon{
+    padding-top: 5px;
 }
 
 #dropdown_button{
@@ -68,18 +98,25 @@
     -ms-user-select: none;
 }
 
-#menu_vault_li{
-    color: #aaaaaa;
-    cursor: default;
-    text-align: center;
-    background-color: white;
+#explanatory_images_div{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
-#menu_campaign_li{
+#menu_vault_li, #menu_campaign_li, #menu_captcha_li, #menu_vote_li{
     color: #aaaaaa;
     cursor: default;
-    text-align: center;
     background-color: white;
+    font-size: 15px;
+}
+
+#open_vault_link, #close_vault_link, #create_vault_link, #register_vault_link, #save_vault_link, #create_campaign_link, #register_voter_link, #reopen_captcha_link, #delete_vote_link{
+    font-size: 14px;
+}
+
+#dropdown1 {
+    max-height: 100%;
 }
 
 #content_navigation{
@@ -103,9 +140,14 @@
 }
 
 #campaign_card_image{
-    height: 100%;
-    max-height: 430px;
+    padding-top: 15px;
+    max-height: 300px;
+    max-width: 90%;
+    width: inherit;
     overflow: hidden;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #create_campaign_title{
@@ -122,7 +164,7 @@
     -ms-user-select: none;
 }
 
-#campaign_card_image{
+#share_link{
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -166,9 +208,22 @@
     -ms-user-select: none;
 }
 
-#disabled_button{
-    pointer-events: none;
+#disabled_enter1_button{
     cursor: default;
+}
+
+#disabled_enter2_button{
+    cursor: default;
+}
+
+#disabled_round_button{
+    cursor: default;
+    overflow: hidden;
+}
+
+#disabled_group_button{
+    cursor: default;
+    overflow: hidden;
 }
 
 #menu_dropdown{
@@ -192,6 +247,119 @@
 
 #campaign_admin_tabs{
     overflow: hidden;
+}
+
+#acknowledgment_div{
+    width: 100%;
+}
+
+#word_cloud{
+    width: 100%;
+    height: 300px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#data_image{
+    width: 400px;
+}
+
+#mobile_div{
+    display: none;
+    padding-top: 8px;
+    padding-bottom: 2px;
+    height: 30px;
+}
+
+#connecting_span{
+    color: #9ccc65;
+    font-weight: lighter;
+}
+
+#login_subpage1{
+    min-height: 630px;
+}
+
+#login_subpage2{
+    min-height: 500px;
+}
+
+#login_subpage3{
+    min-height: 500px;
+}
+
+#login_subpage4{
+    min-height: 500px;
+}
+
+#login_footer{
+    background: radial-gradient(circle at left top, rgba(255,255,210,1) 50px, rgba(255,255,210,0) 180px);
+}
+
+#login_inner_footer{
+    background-image: url('../imgs/cloud.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-x: right;
+    background-position-y: bottom;
+}
+
+#desktop_img{
+    width: 100%;
+}
+
+#tutorials{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.lighter_text {
+    font-weight: lighter;
+}
+
+.column_photo{
+    width: 20%;
+}
+
+.column_name{
+    width: 30%;
+}
+
+.column_party{
+    width: 30%;
+}
+
+.column_results{
+    width: 20%;
+}
+
+.column_category_id{
+    width: 20%;
+}
+
+.column_category_description{
+    min-width: 50%;
+}
+
+.column_enter_group{
+    max-width: 30%;
+}
+
+.column_topic{
+    width: 30%;
+}
+
+.column_content{
+    width: 70%;
+}
+
+.column_party_name{
+    width: 35%;
+}
+
+.column_party_url{
+    width: 45%;
 }
 
 .button_hider a{
@@ -228,7 +396,131 @@
     overflow: hidden;
 }
 
-@media only screen and (max-width: 1080px){
+.accordion_header{
+    color: slategrey;
+}
+
+.btn-flat{
+    padding-left: 1.4em;
+    padding-right: 1.4em;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #dcdcdc;
+    margin: 0;
+    padding: 0;
+}
+
+.small_button {
+    display: inline-block;
+    margin: 0.3em;
+    padding: 0.5em;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 3px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    box-shadow: none;
+    border: none;
+    font-size: 15px;
+    text-align: center;
+}
+
+.ripple {
+    position: absolute;
+    background: rgba(0,0,0,.25);
+    border-radius: 100%;
+    transform: scale(0.2);
+    opacity:0;
+    pointer-events: none;
+    -webkit-animation: ripple .75s ease-out;
+    -moz-animation: ripple .75s ease-out;
+    animation: ripple .75s ease-out;
+}
+
+@-webkit-keyframes ripple {
+    from {
+        opacity:1;
+    }
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes ripple {
+    from {
+        opacity:1;
+    }
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes ripple {
+    from {
+        opacity:1;
+    }
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 450px) {
+    .flex-xs{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    #header_title{
+        font-size: 20px;
+    }
+    #header_info{
+        font-size: 20px;
+    }
+    #login_title{
+        font-size: 1.5em;
+    }
+    #login_menu{
+        max-width: 116px;
+    }
+    .candidates_page_items_img{
+        width: 64px;
+        height: 64px;
+    }
+    .btn-flat{
+        font-size: 12px;
+        padding-left: 0.6em;
+        padding-right: 0.6em;
+    }
+}
+
+@media (max-width: 992px) {
+    #search_icon{
+        display: none;
+    }
+    #mobile_div{
+        display: inherit;
+    }
+    .flex-s {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1080px){
     #circle_icon{
         display: none;
     }
@@ -253,18 +545,15 @@
     #assessment_icon{
         display: none;
     }
-    #people_icon{
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 1355px){
-    #user_icon{
+    #timeline_icon{
         display: none;
     }
 }
 
 @media (min-width: 993px) and (max-width: 1280px){
+    #user_icon{
+        display: none;
+    }
     #slide_out2{
         width: 4%;
     }
@@ -329,8 +618,4 @@
         min-width: 70%;
         margin-left: 15%;
     }
-}
-
-.accordion_header{
-    color: slategrey;
 }

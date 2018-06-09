@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="imgs/icon32_32.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="google-icons/material-icons.css" />
+    <link type="text/css" rel="stylesheet" href="material-note/materialnote.css" />
+    <link type="text/css" rel="stylesheet" href="jqcloud/jqcloud.css">
+</head>
+<body>
+
+<header>
+<nav class="indigo" role="navigation">
+    <div class="container">
+        <div id="content_navigation" class="row">
+            <div class="col s6">
+                <div class="row">
+                    <div id="search_container" class="col s8">
+                        <input id="search" type="text" class="indigo white-text">
+                    </div>
+                    <div id="search_icon_container" class="col s2"><a href="#" id="search_link"><i id="search_icon" class="material-icons left tooltipped grey-text text-lighten-2" data-position="bottom" >arrow_forward</i></a></div>
+                    <div class="col s2"></div>
+                </div>
+            </div>
+            <div id="dropdown_button" class="col s6">
+                <ul class="right">
+                    <a id="menu_dropdown" class='dropdown-button btn indigo z-depth-0 right-align' href='#' data-activates='dropdown1' data-beloworigin="true" data-constrainwidth="false"><div id="menu_img_container" class="row right-align"><i id="menu_icon" class="material-icons grey-text text-lighten-5">menu</i><span>&nbsp;&nbsp;</span></div></a>
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a id="menu_vault_li"></a></li>
+                        <li><a id="open_vault_link" class="modal-trigger blue-grey-text" href="#modal1"></a></li>
+                        <li><a id="close_vault_link" class="blue-grey-text" href="#"></a></li>
+                        <li class="divider"></li>
+                        <li><a id="create_vault_link" class="modal-trigger blue-grey-text" href="#modal4"></a></li>
+                        <li><a id="register_vault_link" class="blue-grey-text" href="#"></a></li>
+                        <li><a id="save_vault_link" class="modal-trigger blue-grey-text" href="#modal2"></a></li>
+                        <li class="divider"></li>
+                        <li><a id="menu_campaign_li"></a></li>
+                        <li id="create_campaign_li"><a id="create_campaign_link" class="modal-trigger blue-grey-text" href="#modal6"></a></li>
+                        <li><a id="register_voter_link" class="blue-grey-text" href="#"></a></li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+</header>
+
+<main>
+<ul id="slide_out1" class="side-nav left fixed">
+    <li>
+        <nav class="indigo">
+            <a id="logo_container" href="#" class="brand-logo" >&nbsp;&nbsp;&nbsp;<img src="imgs/icon_down.png">&nbsp;&nbsp;Kantcoin</a>
+        </nav>
+    </li>
+    <li>
+        <div id="user_view" class="user-view">
+            <div id="user_chip" class="white-text chip blue-grey tooltipped" data-position="right">
+                <i id="user_icon" class="material-icons small">email</i>
+                <span id="kantcoin_org_side_nav_user" class="text right"></span>
+            </div>
+        </div>
+    </li>
+    <li id="my_account_menu_li" hidden><a href="#"> <i id="circle_icon" class="material-icons blue-grey-text">account_circle</i><div id="my_account_menu_item"></div></a></li>
+    <li><a href="#"> <i id="info_icon" class="material-icons blue-grey-text">info</i><div id="campaign_info_menu_item"></div></a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="#"><i id="people_icon" class="material-icons side-icons blue-grey-text">people</i><div id="candidates_menu_item"></div></a></li>
+    <li><a href="#"><i id="balance_icon" class="material-icons side-icons blue-grey-text">account_balance</i><div id="parties_menu_item"></div></a></li>
+    <li><a href="#"><i id="dashboard_icon" class="material-icons side-icons blue-grey-text">dashboard</i><div id="groups_menu_item"></div></a></li>
+    <li><a href="#"><i  id="question_icon" class="material-icons side-icons blue-grey-text">question_answer</i><div id="questions_menu_item"></div></a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="#"><i id="touch_icon" class="material-icons side-icons blue-grey-text">touch_app</i><div id="voting_menu_item"></div></a></li>
+    <li><a href="#"><i id="monetization_icon" class="material-icons side-icons blue-grey-text">monetization_on</i><div id="donations_menu_item"></div></a></li>
+    <li><a href="#"><i id="assessment_icon" class="material-icons side-icons blue-grey-text">assessment</i><div id="statistics_menu_item"></div></a></li>
+</ul>
+
+<ul id="slide_out2" class="side-nav fixed right-aligned">
+    <li>
+        <nav class="indigo">
+            <a href="#" id="settings_link"><i id="config_icon" class="material-icons side-icons grey-text text-lighten-2 right">settings</i></a>
+        </nav>
+    </li>
+</ul>
+
+<div id="page_container" class="container">
+    <div id="mobile_div" class="row center-align">
+        <div class="col s1"></div>
+        <div class="col s1"><a href="#"><i id="home_mobile_icon" class="material-icons grey-text">home</i></a></div>
+        <div class="col s1"><a href="#"><i id="campaign_info_mobile_icon" class="material-icons grey-text">info</i></a></div>
+        <div class="col s1"><a href="#"><i id="candidates_mobile_icon" class="material-icons grey-text">people</i></a></div>
+        <div class="col s1"><a href="#"><i id="parties_mobile_icon" class="material-icons grey-text">account_balance</i></a></div>
+        <div class="col s1"><a href="#"><i id="groups_mobile_icon" class="material-icons grey-text">dashboard</i></a></div>
+        <div class="col s1"><a href="#"><i id="questions_mobile_icon" class="material-icons grey-text">question_answer</i></a></div>
+        <div class="col s1"><a href="#"><i id="voting_mobile_icon" class="material-icons grey-text">touch_app</i></a></div>
+        <div class="col s1"><a href="#"><i id="donations_mobile_icon" class="material-icons grey-text">monetization_on</i></a></div>
+        <div class="col s1"><a href="#"><i id="statistics_mobile_icon" class="material-icons grey-text">assessment</i></a></div>
+        <div class="col s1"><a href="#"><i id="settings_mobile_icon" class="material-icons grey-text">settings</i></a></div>
+        <div class="col s1"></div>
+    </div>
+    <div id="content_header" class="row"><h5 id="header_title" class="header blue-grey-text col s6"></h5><h5 id="header_info" class="header right-align col s6" ></h5></div>
+    <div id="content_page"></div>
+</div>
+</main>
+
+<footer class="page-footer white">
+    <div class="container right-align" id="alertKey"></div>
+    <br>
+    <div id="blue_footer" class="footer-copyright indigo">
+        <div id="copyright_container2" class="container">
+            <div id="copyright_container" class="left white-text row">
+                <h6><a href="https://github.com/kantcoin" class="grey-text text-lighten-5" target="_blank">© 2017 Kantcoin Project</a></h6>
+            </div>
+            <div id="vault_icon_container" class="right grey-text text-lighten-5"></div>
+        </div>
+    </div>
+</footer>
+
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4 class="header blue-grey-text"><i class="small material-icons left">lock_open</i><div id="modal1_title"></div></h4>
+        <br>
+        <div class="row flex-s">
+            <div class="file-field input-field col s12 l4">
+                <div class="btn-large waves-effect waves-light orange">
+                    <span id="modal1_file"></span>
+                    <input id="words_file_button" type="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input id="words_file" class="file-path" type="text">
+                </div>
+            </div>
+            <div class="input-field col s12 l3">
+                <input id="kantcoin_org_user1" type="text">
+                <label id="modal1_user" for="kantcoin_org_user1"></label>
+            </div>
+            <div class="input-field col s12 l3">
+                <input id="kantcoin_org_password1" type="password">
+                <label id="modal1_password" for="kantcoin_org_password1"></label>
+            </div>
+            <div class="input-field col s12 l2">
+                <a href="#" id="modal1_open" class="btn-large waves-effect waves-light orange right"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal2" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4 class="header blue-grey-text"><i class="small material-icons left">save</i><div id="modal2_title"></div></h4>
+        <br>
+        <div class="row flex-s">
+            <div class="input-field col s12 l5">
+                <input id="file_name1" type="text">
+                <label id="modal2_file_name" for="file_name1"></label>
+            </div>
+            <div class="input-field col s12 l7">
+                <a href="#" id="modal2_save" class="btn-large waves-effect waves-light orange right"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal3" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4 class="header blue-grey-text"><i class="small material-icons left">vpn_key</i><div id="modal3_title"></div></h4>
+        <br>
+        <div class="row flex-s">
+            <div class="input-field col s12 l4">
+                <input id="kantcoin_org_user2" type="text">
+                <label id="modal3_user" for="kantcoin_org_user2"></label>
+            </div>
+            <div class="input-field col s12 l4">
+                <input id="kantcoin_org_password2" type="password">
+                <label id="modal3_password" for="kantcoin_org_password2"></label>
+            </div>
+            <div class="input-field col s12 l4">
+                <a href="#" id="modal3_ok" class="btn-large waves-effect waves-light orange right"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal4" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4 class="header blue-grey-text"><i class="small material-icons left">add_box</i><div id="modal4_title"></div></h4>
+        <br>
+        <div class="row flex-s">
+            <div id="user_div1" class="input-field col s12 l4 tooltipped" data-position="top">
+                <input id="kantcoin_org_user3" type="text">
+                <label id="modal4_user" for="kantcoin_org_user3"></label>
+            </div>
+            <div id="password_div1" class="input-field col s12 l3 tooltipped" data-position="top">
+                <input id="kantcoin_org_password3" type="password">
+                <label id="modal4_password1" for="kantcoin_org_password3"></label>
+            </div>
+            <div class="input-field col s12 l3">
+                <input id="kantcoin_org_password4" type="password">
+                <label id="modal4_password2" for="kantcoin_org_password4"></label>
+            </div>
+            <div class="input-field col s12 l2">
+                <a href="#" id="modal4_confirm" class="btn-large waves-effect waves-light orange right"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal6" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h5 class="blue-grey-text" id="create_campaign_title"></h5>
+        <div class="row">
+            <ul id="create_campaign_tabs" class="tabs">
+                <li class="tab col s4"><a id="create_campaign_basic_info" class="active" href="#basic_info_tab"></a></li>
+                <li class="tab col s4"><a id="create_campaign_votation_info" href="#votation_tab"></a></li>
+                <li class="tab col s4"><a id="create_campaign_donations_info" href="#donations_tab"></a></li>
+            </ul>
+            <div id="tabs_space"></div>
+            <div id="basic_info_tab" class="col s12">
+                <form class="col s12">
+                    <div class="input-field col s12">
+                        <input id="campaign_name_input" type="text" />
+                        <label id="campaign_name_label" for="campaign_name_input"></label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="campaign_description_input" type="text" />
+                        <label id="campaign_description_label" for="campaign_name_input"></label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="country_select">
+                                <option id="AF_option" value="AF">Afghanistan</option>
+                                <option id="AX_option" value="AX">Åland Islands</option>
+                                <option id="AL_option" value="AL">Albania</option>
+                                <option id="DZ_option" value="DZ">Algeria</option>
+                                <option id="AS_option" value="AS">American Samoa</option>
+                                <option id="AD_option" value="AD">Andorra</option>
+                                <option id="AO_option" value="AO">Angola</option>
+                                <option id="AI_option" value="AI">Anguilla</option>
+                                <option id="AQ_option" value="AQ">Antarctica</option>
+                                <option id="AG_option" value="AG">Antigua and Barbuda</option>
+                                <option id="AR_option" value="AR">Argentina</option>
+                                <option id="AM_option" value="AM">Armenia</option>
+                                <option id="AW_option" value="AW">Aruba</option>
+                                <option id="AU_option" value="AU">Australia</option>
+                                <option id="AT_option" value="AT">Austria</option>
+                                <option id="AZ_option" value="AZ">Azerbaijan</option>
+                                <option id="BS_option" value="BS">Bahamas</option>
+                                <option id="BH_option" value="BH">Bahrain</option>
+                                <option id="BD_option" value="BD">Bangladesh</option>
+                                <option id="BB_option" value="BB">Barbados</option>
+                                <option id="BY_option" value="BY">Belarus</option>
+                                <option id="BE_option" value="BE">Belgium</option>
+                                <option id="BZ_option" value="BZ">Belize</option>
+                                <option id="BJ_option" value="BJ">Benin</option>
+                                <option id="BM_option" value="BM">Bermuda</option>
+                                <option id="BT_option" value="BT">Bhutan</option>
+                                <option id="BO_option" value="BO">Bolivia, Plurinational State of</option>
+                                <option id="BQ_option" value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                                <option id="BA_option" value="BA">Bosnia and Herzegovina</option>
+                                <option id="BW_option" value="BW">Botswana</option>
+                                <option id="BV_option" value="BV">Bouvet Island</option>
+                                <option id="BR_option" value="BR">Brazil</option>
+                                <option id="IO_option" value="IO">British Indian Ocean Territory</option>
+                                <option id="BN_option" value="BN">Brunei Darussalam</option>
+                                <option id="BG_option" value="BG">Bulgaria</option>
+                                <option id="BF_option" value="BF">Burkina Faso</option>
+                                <option id="BI_option" value="BI">Burundi</option>
+                                <option id="KH_option" value="KH">Cambodia</option>
+                                <option id="CM_option" value="CM">Cameroon</option>
+                                <option id="CA_option" value="CA">Canada</option>
+                                <option id="CV_option" value="CV">Cape Verde</option>
+                                <option id="KY_option" value="KY">Cayman Islands</option>
+                                <option id="CF_option" value="CF">Central African Republic</option>
+                                <option id="TD_option" value="TD">Chad</option>
+                                <option id="CL_option" value="CL">Chile</option>
+                                <option id="CN_option" value="CN">China</option>
+                                <option id="CX_option" value="CX">Christmas Island</option>
+                                <option id="CC_option" value="CC">Cocos (Keeling) Islands</option>
+                                <option id="CO_option" value="CO">Colombia</option>
+                                <option id="KM_option" value="KM">Comoros</option>
+                                <option id="CG_option" value="CG">Congo</option>
+                                <option id="CD_option" value="CD">Congo, the Democratic Republic of the</option>
+                                <option id="CK_option" value="CK">Cook Islands</option>
+                                <option id="CR_option" value="CR">Costa Rica</option>
+                                <option id="CI_option" value="CI">Côte d'Ivoire</option>
+                                <option id="HR_option" value="HR">Croatia</option>
+                                <option id="CU_option" value="CU">Cuba</option>
+                                <option id="CW_option" value="CW">Curaçao</option>
+                                <option id="CY_option" value="CY">Cyprus</option>
+                                <option id="CZ_option" value="CZ">Czech Republic</option>
+                                <option id="DK_option" value="DK">Denmark</option>
+                                <option id="DJ_option" value="DJ">Djibouti</option>
+                                <option id="DM_option" value="DM">Dominica</option>
+                                <option id="DO_option" value="DO">Dominican Republic</option>
+                                <option id="EC_option" value="EC">Ecuador</option>
+                                <option id="EG_option" value="EG">Egypt</option>
+                                <option id="SV_option" value="SV">El Salvador</option>
+                                <option id="GQ_option" value="GQ">Equatorial Guinea</option>
+                                <option id="ER_option" value="ER">Eritrea</option>
+                                <option id="EE_option" value="EE">Estonia</option>
+                                <option id="ET_option" value="ET">Ethiopia</option>
+                                <option id="FK_option" value="FK">Falkland Islands (Malvinas)</option>
+                                <option id="FO_option" value="FO">Faroe Islands</option>
+                                <option id="FJ_option" value="FJ">Fiji</option>
+                                <option id="FI_option" value="FI">Finland</option>
+                                <option id="FR_option" value="FR">France</option>
+                                <option id="GF_option" value="GF">French Guiana</option>
+                                <option id="PF_option" value="PF">French Polynesia</option>
+                                <option id="TF_option" value="TF">French Southern Territories</option>
+                                <option id="GA_option" value="GA">Gabon</option>
+                                <option id="GM_option" value="GM">Gambia</option>
+                                <option id="GE_option" value="GE">Georgia</option>
+                                <option id="DE_option" value="DE">Germany</option>
+                                <option id="GH_option" value="GH">Ghana</option>
+                                <option id="GI_option" value="GI">Gibraltar</option>
+                                <option id="GR_option" value="GR">Greece</option>
+                                <option id="GL_option" value="GL">Greenland</option>
+                                <option id="GD_option" value="GD">Grenada</option>
+                                <option id="GP_option" value="GP">Guadeloupe</option>
+                                <option id="GU_option" value="GU">Guam</option>
+                                <option id="GT_option" value="GT">Guatemala</option>
+                                <option id="GG_option" value="GG">Guernsey</option>
+                                <option id="GN_option" value="GN">Guinea</option>
+                                <option id="GW_option" value="GW">Guinea-Bissau</option>
+                                <option id="GY_option" value="GY">Guyana</option>
+                                <option id="HT_option" value="HT">Haiti</option>
+                                <option id="HM_option" value="HM">Heard Island and McDonald Islands</option>
+                                <option id="VA_option" value="VA">Holy See (Vatican City State)</option>
+                                <option id="HN_option" value="HN">Honduras</option>
+                                <option id="HK_option" value="HK">Hong Kong</option>
+                                <option id="HU_option" value="HU">Hungary</option>
+                                <option id="IS_option" value="IS">Iceland</option>
+                                <option id="IN_option" value="IN">India</option>
+                                <option id="ID_option" value="ID">Indonesia</option>
+                                <option id="IR_option" value="IR">Iran, Islamic Republic of</option>
+                                <option id="IQ_option" value="IQ">Iraq</option>
+                                <option id="IE_option" value="IE">Ireland</option>
+                                <option id="IM_option" value="IM">Isle of Man</option>
+                                <option id="IL_option" value="IL">Israel</option>
+                                <option id="IT_option" value="IT">Italy</option>
+                                <option id="JM_option" value="JM">Jamaica</option>
+                                <option id="JP_option" value="JP">Japan</option>
+                                <option id="JE_option" value="JE">Jersey</option>
+                                <option id="JO_option" value="JO">Jordan</option>
+                                <option id="KZ_option" value="KZ">Kazakhstan</option>
+                                <option id="KE_option" value="KE">Kenya</option>
+                                <option id="KI_option" value="KI">Kiribati</option>
+                                <option id="KP_option" value="KP">Korea, Democratic People's Republic of</option>
+                                <option id="KR_option" value="KR">Korea, Republic of</option>
+                                <option id="KW_option" value="KW">Kuwait</option>
+                                <option id="KG_option" value="KG">Kyrgyzstan</option>
+                                <option id="LA_option" value="LA">Lao People's Democratic Republic</option>
+                                <option id="LV_option" value="LV">Latvia</option>
+                                <option id="LB_option" value="LB">Lebanon</option>
+                                <option id="LS_option" value="LS">Lesotho</option>
+                                <option id="LR_option" value="LR">Liberia</option>
+                                <option id="LY_option" value="LY">Libya</option>
+                                <option id="LI_option" value="LI">Liechtenstein</option>
+                                <option id="LT_option" value="LT">Lithuania</option>
+                                <option id="LU_option" value="LU">Luxembourg</option>
+                                <option id="MO_option" value="MO">Macao</option>
+                                <option id="MK_option" value="MK">Macedonia, the former Yugoslav Republic of</option>
+                                <option id="MG_option" value="MG">Madagascar</option>
+                                <option id="MW_option" value="MW">Malawi</option>
+                                <option id="MY_option" value="MY">Malaysia</option>
+                                <option id="MV_option" value="MV">Maldives</option>
+                                <option id="ML_option" value="ML">Mali</option>
+                                <option id="MT_option" value="MT">Malta</option>
+                                <option id="MH_option" value="MH">Marshall Islands</option>
+                                <option id="MQ_option" value="MQ">Martinique</option>
+                                <option id="MR_option" value="MR">Mauritania</option>
+                                <option id="MU_option" value="MU">Mauritius</option>
+                                <option id="YT_option" value="YT">Mayotte</option>
+                                <option id="MX_option" value="MX">Mexico</option>
+                                <option id="FM_option" value="FM">Micronesia, Federated States of</option>
+                                <option id="MD_option" value="MD">Moldova, Republic of</option>
+                                <option id="MC_option" value="MC">Monaco</option>
+                                <option id="MN_option" value="MN">Mongolia</option>
+                                <option id="ME_option" value="ME">Montenegro</option>
+                                <option id="MS_option" value="MS">Montserrat</option>
+                                <option id="MA_option" value="MA">Morocco</option>
+                                <option id="MZ_option" value="MZ">Mozambique</option>
+                                <option id="MM_option" value="MM">Myanmar</option>
+                                <option id="NA_option" value="NA">Namibia</option>
+                                <option id="NR_option" value="NR">Nauru</option>
+                                <option id="NP_option" value="NP">Nepal</option>
+                                <option id="NL_option" value="NL">Netherlands</option>
+                                <option id="NC_option" value="NC">New Caledonia</option>
+                                <option id="NZ_option" value="NZ">New Zealand</option>
+                                <option id="NI_option" value="NI">Nicaragua</option>
+                                <option id="NE_option" value="NE">Niger</option>
+                                <option id="NG_option" value="NG">Nigeria</option>
+                                <option id="NU_option" value="NU">Niue</option>
+                                <option id="NF_option" value="NF">Norfolk Island</option>
+                                <option id="MP_option" value="MP">Northern Mariana Islands</option>
+                                <option id="NO_option" value="NO">Norway</option>
+                                <option id="OM_option" value="OM">Oman</option>
+                                <option id="PK_option" value="PK">Pakistan</option>
+                                <option id="PW_option" value="PW">Palau</option>
+                                <option id="PS_option" value="PS">Palestinian Territory</option>
+                                <option id="PA_option" value="PA">Panama</option>
+                                <option id="PG_option" value="PG">Papua New Guinea</option>
+                                <option id="PY_option" value="PY">Paraguay</option>
+                                <option id="PE_option" value="PE">Peru</option>
+                                <option id="PH_option" value="PH">Philippines</option>
+                                <option id="PN_option" value="PN">Pitcairn</option>
+                                <option id="PL_option" value="PL">Poland</option>
+                                <option id="PT_option" value="PT">Portugal</option>
+                                <option id="PR_option" value="PR">Puerto Rico</option>
+                                <option id="QA_option" value="QA">Qatar</option>
+                                <option id="RE_option" value="RE">Réunion</option>
+                                <option id="RO_option" value="RO">Romania</option>
+                                <option id="RU_option" value="RU">Russian Federation</option>
+                                <option id="RW_option" value="RW">Rwanda</option>
+                                <option id="BL_option" value="BL">Saint Barthélemy</option>
+                                <option id="SH_option" value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+                                <option id="KN_option" value="KN">Saint Kitts and Nevis</option>
+                                <option id="LC_option" value="LC">Saint Lucia</option>
+                                <option id="MF_option" value="MF">Saint Martin (French part)</option>
+                                <option id="PM_option" value="PM">Saint Pierre and Miquelon</option>
+                                <option id="VC_option" value="VC">Saint Vincent and the Grenadines</option>
+                                <option id="WS_option" value="WS">Samoa</option>
+                                <option id="SM_option" value="SM">San Marino</option>
+                                <option id="ST_option" value="ST">Sao Tome and Principe</option>
+                                <option id="SA_option" value="SA">Saudi Arabia</option>
+                                <option id="SN_option" value="SN">Senegal</option>
+                                <option id="RS_option" value="RS">Serbia</option>
+                                <option id="SC_option" value="SC">Seychelles</option>
+                                <option id="SL_option" value="SL">Sierra Leone</option>
+                                <option id="SG_option" value="SG">Singapore</option>
+                                <option id="SX_option" value="SX">Sint Maarten (Dutch part)</option>
+                                <option id="SK_option" value="SK">Slovakia</option>
+                                <option id="SI_option" value="SI">Slovenia</option>
+                                <option id="SB_option" value="SB">Solomon Islands</option>
+                                <option id="SO_option" value="SO">Somalia</option>
+                                <option id="ZA_option" value="ZA">South Africa</option>
+                                <option id="GS_option" value="GS">South Georgia and the South Sandwich Islands</option>
+                                <option id="SS_option" value="SS">South Sudan</option>
+                                <option id="ES_option" value="ES">Spain</option>
+                                <option id="LK_option" value="LK">Sri Lanka</option>
+                                <option id="SD_option" value="SD">Sudan</option>
+                                <option id="SR_option" value="SR">Suriname</option>
+                                <option id="SJ_option" value="SJ">Svalbard and Jan Mayen</option>
+                                <option id="SZ_option" value="SZ">Swaziland</option>
+                                <option id="SE_option" value="SE">Sweden</option>
+                                <option id="CH_option" value="CH">Switzerland</option>
+                                <option id="SY_option" value="SY">Syrian Arab Republic</option>
+                                <option id="TW_option" value="TW">Taiwan, Province of China</option>
+                                <option id="TJ_option" value="TJ">Tajikistan</option>
+                                <option id="TZ_option" value="TZ">Tanzania, United Republic of</option>
+                                <option id="TH_option" value="TH">Thailand</option>
+                                <option id="TL_option" value="TL">Timor-Leste</option>
+                                <option id="TG_option" value="TG">Togo</option>
+                                <option id="TK_option" value="TK">Tokelau</option>
+                                <option id="TO_option" value="TO">Tonga</option>
+                                <option id="TT_option" value="TT">Trinidad and Tobago</option>
+                                <option id="TN_option" value="TN">Tunisia</option>
+                                <option id="TR_option" value="TR">Turkey</option>
+                                <option id="TM_option" value="TM">Turkmenistan</option>
+                                <option id="TC_option" value="TC">Turks and Caicos Islands</option>
+                                <option id="TV_option" value="TV">Tuvalu</option>
+                                <option id="UG_option" value="UG">Uganda</option>
+                                <option id="UA_option" value="UA">Ukraine</option>
+                                <option id="AE_option" value="AE">United Arab Emirates</option>
+                                <option id="GB_option" value="GB">United Kingdom</option>
+                                <option id="US_option" value="US">United States</option>
+                                <option id="UM_option" value="UM">United States Minor Outlying Islands</option>
+                                <option id="UY_option" value="UY">Uruguay</option>
+                                <option id="UZ_option" value="UZ">Uzbekistan</option>
+                                <option id="VU_option" value="VU">Vanuatu</option>
+                                <option id="VE_option" value="VE">Venezuela, Bolivarian Republic of</option>
+                                <option id="VN_option" value="VN">Viet Nam</option>
+                                <option id="VG_option" value="VG">Virgin Islands, British</option>
+                                <option id="VI_option" value="VI">Virgin Islands, U.S.</option>
+                                <option id="WF_option" value="WF">Wallis and Futuna</option>
+                                <option id="EH_option" value="EH">Western Sahara</option>
+                                <option id="YE_option" value="YE">Yemen</option>
+                                <option id="ZM_option" value="ZM">Zambia</option>
+                                <option id="ZW_option" value="ZW">Zimbabwe</option>
+                                <option id="OTH_option" value="OTH">Other</option>
+                                <option id="NOT_option" value="NOT">None</option>
+                                <option id="INT_option" value="INT">Internacional</option>
+                            </select>
+                            <label id="country_label"></label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="image_input" type="url" class="validate">
+                            <label id="image_label" for="image_input"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s3">
+                            <input id="initial_date_input" type="text" class="datepicker">
+                            <label id="initial_date_label" for="initial_date_input"></label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input id="final_date_input" type="text" class="datepicker">
+                            <label id="final_date_label" for="final_date_input"></label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="campaign_external_page_input" type="url" class="validate">
+                            <label id="campaign_external_page_label" for="campaign_external_page_input"></label>
+                        </div>
+                    </div>
+               </form>
+            </div>
+            <div id="votation_tab" class="col s12">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="prefix_voters_input" type="text" />
+                            <label id="prefix_voters_label" for="prefix_voters_input"></label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="suffix_voters_input" type="text" />
+                            <label id="suffix_voters_label" for="suffix_voters_input"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="regexp_input" type="text" />
+                            <label id="regexp_label" for="regexp_input"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <select id="votation_rounds_select">
+                                <option id="votation_rounds_selected_option" value="" disabled selected>Number of votation rounds</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="col s6">
+                            <select id="donation_rounds_select">
+                                <option id="donation_rounds_selected_option" value="" disabled selected>Number of donation rounds</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="donations_tab" class="col s12">
+                <form class="col s12">
+                    <br>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="accepted_donation_values" type="text" placeholder="100;500;1000;2000" />
+                            <label id="accepted_donation_values_label" for="accepted_donation_values"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="confirmation_address" type="text" placeholder="0xe4caf21bb823db21d0b9926d2293a222379b1234" />
+                            <label id="confirmation_address_label" for="confirmation_address"></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer right-align">
+        <a href="#" id="cancel_create_campaign_button" class="modal-action modal-close waves-effect waves-green btn-flat light-blue white-text "></a>
+        <a href="#" id="create_campaign_button" class="waves-effect waves-green btn-flat orange white-text "></a>
+    </div>
+</div>
+<div id="modal7" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h5 class="blue-grey-text" id="campaign_admin_title"></h5>
+        <div class="row">
+            <ul id="campaign_admin_tabs" class="tabs">
+                <li class="tab col s2" id="campaign_admin_candidates_li"><a id="campaign_admin_candidates" href="#admin_candidates_tab"></a></li>
+                <li class="tab col s2" id="campaign_admin_parties_li"><a id="campaign_admin_parties" href="#admin_parties_tab"></a></li>
+                <li class="tab col s2" id="campaign_admin_questions_li"><a id="campaign_admin_questions" href="#admin_questions_tab"></a></li>
+                <li class="tab col s2" id="campaign_admin_ballots_li"><a id="campaign_admin_ballots" href="#admin_ballots_tab"></a></li>
+                <li class="tab col s2" id="campaign_admin_groups_li"><a id="campaign_admin_groups" href="#admin_groups_tab"></a></li>
+                <li class="tab col s2" id="campaign_admin_chairpersons_li"><a id="campaign_admin_chairpersons" class="active" href="#admin_chairpersons_tab"></a></li>
+            </ul>
+            <div id="tabs_space2">
+                <div id="admin_candidates_tab" class="col s12">
+                    <br>
+                    <h6><b><span id="insert_candidates_title"> </span></b></h6>
+                    <br>
+                    <div class="row">
+                        <textarea id="insert_candidates_textarea"
+                              placeholder="Qmd5eM55wfNA1f2feTkRBWueriARQmb36GnYsGBktk1234;0xe4caf21bb823db21d0b9926d2293a222379b1234;Yussif;party0;http://photos.com/photo0.jpg&#10;Qmd5eM55wfNA1f2feTkRBWueriARQmb36GnYsGBktk5678;0xe4caf21bb823db21d0b9926d2293a222379b5678;Natasha;party1;http://photos.com/photo1.jpg&#10;Qmd5eM55wfNA1f2feTkRBWueriARQmb36GnYsGBktk9112;0xe4caf21bb823db21d0b9926d2293a222379b9112;Li;party2;http://photos.com/photo2.jpg"
+                              class="materialize-textarea"></textarea>
+                        <label id="insert_candidates_label" for="insert_candidates_textarea"></label>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="right"><a href="#" id="insert_candidates_button" class="waves-effect waves-green btn-flat orange white-text"></a></div>
+                    </div>
+                </div>
+                <div id="admin_parties_tab" class="col s12">
+                    <br>
+                    <h6><b><span id="insert_parties_title"> </span></b></h6>
+                    <br>
+                    <div class="row">
+                    <textarea id="insert_parties_textarea"
+                              placeholder="Qmd5eM55wfNA1f2feTkRBWueriARQmb36GnYsGBktk1234;party0;http://photos.com/photo0.jpg;http://www.party0.com&#10;Qmd5eM55wfNA1f2feTkRBWueriARQmb36GnYsGBktk5678;party1;http://photos.com/photo1.jpg;http://www.party1.com&#10;Qmd5eM55wfNA1f2feTkRBWueriARQmb36GnYsGBktk9112;party2;http://photos.com/photo2.jpg;http://www.party2.com"
+                              class="materialize-textarea"></textarea>
+                        <label id="insert_parties_label" for="insert_parties_textarea"></label>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="right"><a href="#" id="insert_parties_button" class="waves-effect waves-green btn-flat orange white-text"></a></div>
+                    </div>
+                </div>
+                <div id="admin_questions_tab" class="col s12">
+                    <br>
+                    <h6><b><span id="insert_questions_title"> </span></b></h6>
+                    <br>
+                    <div class="row">
+                    <textarea id="insert_questions_textarea"
+                              placeholder="Education;What are your proposals regarding <b>education</b>? Join this discussion on our <a href='facebook.com/page'>page</a>.&#10;Ethics; What is your opinion about <a href='https://twitter.com/hashtag/something'>something</a>"
+                              class="materialize-textarea"></textarea>
+                        <label id="insert_questions_label" for="insert_questions_textarea"></label>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="right"><a href="#" id="insert_questions_button" class="waves-effect waves-green btn-flat orange white-text"></a></div>
+                    </div>
+                </div>
+                <div id="admin_ballots_tab" class="col s12">
+                    <br>
+                    <h6><b><span id="create_round_title"> </span></b></h6>
+                    <br>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="create_round_id" type="text">
+                            <label id="create_round_id_label" for="create_round_id"></label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select id="define_round_type">
+                                <option id="define_round_type_selected_option" value="" disabled selected></option>
+                                <option id="define_round_type_normal" value="false"></option>
+                                <option id="define_round_type_donations" value="true"></option>
+                            </select>
+                            <label id="define_round_type_label" for="define_round_type"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="right"><a href="#" id="create_round_button" class="waves-effect waves-green btn-flat orange white-text"></a></div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <h6><b><span id="current_ballot_label"></span>:&nbsp;&nbsp;</b><mark><span id="current_ballot_mark"></span></mark>&nbsp;-&nbsp;<i><span id="current_ballot_status"></span></i></h6>
+                    </div>
+                    <div class="row">
+                        <div class="left">
+                            <a href="#" id="stop_round_button" class="waves-effect waves-green btn-flat red lighten-2 white-text"></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="#" id="close_round_button" class="waves-effect waves-green btn-flat grey darken-1 white-text"></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="admin_groups_tab" class="col s12">
+                    <br>
+                    <h6><b><span id="insert_group_categories_title"></span></b></h6>
+                    <br>
+                    <div class="row">
+                    <textarea id="insert_group_categories_textarea"
+                              placeholder="M-SE;Men with secondary education&#10;W-BD;Women with bachelor's degree"
+                              class="materialize-textarea"></textarea>
+                        <label id="insert_group_categories_label" for="insert_group_categories_textarea"></label>
+                    </div>
+                    <div class="row">
+                        <div class="right">
+                            <a href="#" id="insert_group_categories_button" class="waves-effect waves-green btn-flat orange white-text"></a>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <h6><b><span id="create_groups_label"></span></b></h6>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select id="group_categories_select">
+                            </select>
+                            <label id="group_categories_select_label"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="how_many_groups" type="text" />
+                            <label id="how_many_groups_label" for="how_many_groups"></label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="groups_chairperson" type="text" placeholder="0x3825db660e1880ff2cb683c27c4cda0493dc1234" />
+                            <label id="groups_chairperson_label" for="groups_chairperson"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="groups_value" type="text" />
+                            <label id="groups_value_label" for="groups_value"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a href="#" id="create_groups_button" class="waves-effect waves-green btn-flat orange white-text right"></a>
+                    </div>
+                </div>
+                <div id="admin_chairpersons_tab" class="col s12">
+                    <br>
+                    <h6><b><span id="listen_tor_title"> </span></b></h6>
+                    <div class="switch">
+                        <label>
+                            <span id="listen_tor_no_label"></span>
+                            <input id="tor_checkbox" type="checkbox" checked="checked">
+                            <span class="lever"></span>
+                            <span id="listen_tor_yes_label"></span>
+                        </label>
+                    </div>
+                    <br>
+                    <h6><b><span id="provide_campaign_info"> </span></b></h6>
+                    <div class="switch">
+                        <label>
+                            <span id="provide_campaign_info_no_label"></span>
+                            <input id="provide_info_checkbox" type="checkbox" checked="checked">
+                            <span class="lever"></span>
+                            <span id="provide_campaign_info_yes_label"></span>
+                        </label>
+                    </div>
+                    <br>
+                    <h6><b><span id="add_tor_label"> </span></b></h6>
+                    <div class="row">
+                        <a href="#" id="add_tor_button" class="waves-effect waves-green btn-flat grey white-text"></a>
+                    </div>
+                    <h6><b><span id="send_enode_label"> </span></b></h6>
+                    <div class="row">
+                        <a href="#" id="send_enode_button" class="waves-effect waves-green btn-flat grey white-text"></a>
+                    </div>
+                    <h6><b><span id="inform_address_label"> </span></b></h6>
+                    <blockquote><h6><span id="address_to_inform_label"> </span></h6></blockquote>
+                    <h6><b><span id="your_tor_title"> </span></b></h6>
+                    <blockquote><h6><span id="your_tor_label"> </span></h6></blockquote>
+                    <h6><b><span id="send_votes_label"> </span></b></h6>
+                    <div class="row">
+                        <a href="#" id="send_votes_button" class="waves-effect waves-green btn-flat grey white-text"></a>
+                    </div>
+                    <h6><b><span id="commit_label"> </span></b></h6>
+                    <div class="row">
+                        <a href="#" id="pre_commit_button" class="waves-effect waves-green btn-flat grey white-text"></a>
+                        <a href="#" id="commit_button" class="waves-effect waves-green btn-flat grey white-text"></a>
+                    </div>
+                    <div id="observers_div">
+                        <h6><b><span id="observers_enodes_label"> </span></b></h6>
+                        <div class="row">
+                        <textarea id="observers_enodes_textarea"
+                                  placeholder="enode://607328143f1031629a85b15871abed53426312a46b7ba3383a4a522a2344c5a3cc9ed1d53ea8bde1a26aef768a510e932d76e79ca6244a8d1234123412341234@123.123.123.123:30303&#10;enode://607328143f1031629a85b15871abed53426312a46b7ba3383a4a522a2344c5a3cc9ed1d53ea8bde1a26aef768a510e932d76e79ca6244a8d1234123412344321@123.123.123.321:30303"
+                                  class="materialize-textarea"></textarea>
+                            <a href="#" id="send_observers_enodes_button" class="waves-effect waves-green btn-flat grey white-text"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer right-align">
+        <a href="#" id="close_campaign_admin_button" class="modal-action modal-close waves-effect waves-green btn-flat light-blue white-text "></a>
+    </div>
+</div>
+
+<div id="my_account_page_html1" hidden>
+    <!--[CDATA[
+    <ul id="account_collapsible" class="collapsible" data-collapsible="accordion">
+        <li><div class="collapsible-header"><h6 class="accordion_header valign-wrapper"><i class="material-icons">remove_red_eye</i><span id="watch_profile_container"></span></h6></div>
+            <div class="collapsible-body"><span id="profile_html_container"></span></div></li>
+        <li><div class="collapsible-header"><h6 class="accordion_header valign-wrapper"><i class="material-icons">edit</i><span id="edit_profile_container"></span></h6></div>
+            <div class="collapsible-body">
+                <div id="editor"></div>
+                <br>
+                <div class="right">
+                    <a href="#" id="cancel_profile" class="btn-flat waves-light light-blue white-text"><span id="cancel_profile_button_container"></span></a>
+                    <a href="#" id="save_profile" class="btn-flat waves-effect waves-light orange white-text"><span id="save_profile_container"></span></a>
+                </div>
+                <br><br><br>
+            </div>
+        </li>
+        <li><div class="collapsible-header"><h6 class="accordion_header valign-wrapper"><i class="material-icons">account_box</i><span id="my_data_container"></span></h6></div>
+            <div class="collapsible-body">
+            <ul class="collection">
+                   <li class="collection-item">
+                        <h6><blockquote><b><span id="profile_ipfs_container"></span></b><span id="current_profile_ipfs_container"></span></blockquote></h6>
+                        <br>
+                   </li>
+                   <li class="collection-item">
+                       <h6><b><span id="user_kind_title"></span></b></h6>
+                       <form action="#">
+                        <div>
+                          <input class="with-gap" name="user_kind_radio_group" type="radio" id="candidate_radio" />
+                          <label id="candidate_radio_label" class="black-text" for="candidate_radio"></label>
+                        </div>
+                        <div>
+                          <input class="with-gap" name="user_kind_radio_group" type="radio" id="party_radio" />
+                          <label id="party_radio_label" class="black-text" for="party_radio"></label>
+                        </div>
+                       </form>
+                  </li>
+                  <li class="collection-item">
+                       <form action="#">
+                            <h6><b><span id="user_photo_title"></span></b></h6>
+                            <input id="user_photo_input" type="url" class="validate">
+                            <h6><b><span id="user_name_title"></span></b></h6>
+                            <input id="user_name_input" type="text">
+                            <h6><b><span id="donations_address_title"></span></b></h6>
+                            <input id="donations_address_input" type="text">
+                       </form>
+                       <br>
+                       <div class="right">
+                            <a href="#" id="cancel_user_data" class="btn-flat waves-light light-blue white-text"><span id="cancel_data_button_container"></span></a>
+                            <a href="#" id="save_user_data" class="btn-flat waves-effect waves-light orange white-text"><span id="save_user_data_container"></span></a>
+                       </div>
+                  </li>
+            </ul>
+            </div></li>
+        <li><div class="collapsible-header"><h6 class="accordion_header valign-wrapper"><i class="material-icons">dvr</i><span id="network_ids_container"></span></h6></div>
+            <div class="collapsible-body">
+            <ul class="collection">
+                   <li class="collection-item"><h6><b><span id="user_id_container"></span></b><span id="current_user_id_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="pkey_container"></span></b><span id="current_pkey_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="provider_container"></span></b><span id="current_provider_container"></span></h6></li>
+            </ul>
+            </div></li>
+    </ul>
+    -->
+</div>
+<div id="my_account_page_html2" hidden>
+    <!--[CDATA[
+    <ul id="account_collapsible" class="collapsible" data-collapsible="accordion">
+        <li><div class="collapsible-header"><h6 class="accordion_header valign-wrapper"><i class="material-icons">remove_red_eye</i><span id="watch_profile_container"></span></h6></div>
+            <div class="collapsible-body"><span id="profile_html_container"></span></div></li>
+        <li><div class="collapsible-header"><h6 class="accordion_header valign-wrapper"><i class="material-icons">edit</i><span id="edit_profile_container"></span></h6></div>
+            <div class="collapsible-body"><span></span></div></li>
+        <li><div class="collapsible-header"><h6 class="accordion_header valign-wrapper"><i class="material-icons">account_box</i><span id="my_data_container"></span></h6></div>
+            <div class="collapsible-body"><span></span></div></li>
+        <li><div class="collapsible-header"><h6 class="accordion_header valign-wrapper"><i class="material-icons">dvr</i><span id="network_ids_container"></span></h6></div>
+            <div class="collapsible-body"><span></span></div></li>
+    </ul>
+    -->
+</div>
+<div id="open_campaign_page_html" hidden>
+    <!--[CDATA[
+<div class="col s12 m12">
+    <div class="card vertical">
+      <div class="center">
+        <img id="campaign_card_image">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <ul class="collection with-header">
+           <li class="collection-header blue-grey-text"><h6 class="valign-wrapper"><i class="material-icons">description</i>&nbsp;&nbsp;&nbsp; <span id="campaign_basic_info_container"></span></h6></li>
+           <li class="collection-item"><h6><b> <span id="campaign_name_container"></span></b><span id="current_campaign_name_container"></span></h6></li>
+           <li class="collection-item"><h6><b> <span id="campaign_description_container"></span></b><span id="current_campaign_description_container"></span></h6></li>
+           <li class="collection-item"><h6><b> <span id="campaign_country_container"></span></b><span id="current_campaign_country_container"></span></h6></li>
+           <li class="collection-item"><h6><b> <span id="campaign_period_container"></span></b><span id="current_campaign_period_container"></span></h6></li>
+          </ul>
+        </div>
+        <div class="card-action no-pad-top right-align">
+          <a class="teal-text" id="current_campaign_link"><h6><span id="external_link_container"></span></h6></a>
+        </div>
+      </div>
+    </div>
+    <br/><br/>
+    <ul id="campaign_collapsible" class="collapsible" data-collapsible="accordion">
+       <li><div class="collapsible-header"><h6 class="accordion_header valign-wrapper"><i class="material-icons">settings_applications</i><span id="campaign_technical_info_container"></span></h6></div>
+           <div class="collapsible-body">
+               <ul class="collection">
+                   <li class="collection-item"><h6><b><span id="campaign_id_container"></span></b><span id="current_campaign_id_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="chainid_container"></span></b><span id="current_chainid_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="ipns_address_container"></span></b><span id="current_ipns_address_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="ethereum_address_container"></span></b><span id="current_ethereum_address_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="contract_address_container"></span></b><span id="current_contract_address_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="login_provider_container"></span></b><span id="current_login_provider_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="accepted_donations_container"></span></b><span id="current_accepted_donations_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="confirmation_address_container"></span></b><span id="current_confirmation_address_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="donations_contract_container"></span></b><span id="current_donations_contract_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="onion_container"></span></b><span id="current_onion_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="regexp_container"></span></b><span id="current_regexp_container"></span></h6></li>
+               </ul>
+           </div>
+       </li>
+    </ul>
+</div>
+    -->
+</div>
+<div id="ballot_id_header_html" hidden>
+    <!--[CDATA[
+    <a href="#" id="disabled_round_button" class="btn-flat grey-text [[color]] lighten-5 tooltipped" data-position="bottom" data-tooltip="[[data-tooltip]]"><span>[[id]]</span></a>
+    -->
+</div>
+<div id="voter_group_header_html" hidden>
+    <!--[CDATA[
+    <a href="#" id="disabled_group_button" class="btn-flat grey-text amber lighten-5 tooltipped" data-position="bottom" data-tooltip="[[data-tooltip]]"><span>[[category]]</span></a>
+    -->
+</div>
+<div id="enter_campaign_button_html1" hidden>
+    <!--[CDATA[
+    <a href="#" id="disabled_enter1_button" class="btn-flat grey-text cyan lighten-5"><span id="enter_campaign_container"></span></a>
+    -->
+</div>
+<div id="enter_campaign_button_html2" hidden>
+    <!--[CDATA[
+    <a href="#" id="disabled_enter2_button" class="btn-flat grey-text light-green lighten-5"><span id="entered_container"></span></a>
+    -->
+</div>
+<div id="campaign_admin_button_html" hidden>
+    <!--[CDATA[
+    <a id="campaign_admin_button" href="#modal7" class="modal-trigger btn-flat grey-text orange lighten-5"><span id="campaign_admin_container"></span></a>&nbsp;&nbsp;
+    -->
+</div>
+<div id="collaborate_button_html" hidden>
+    <!--[CDATA[
+    <a id="collaborate_button" href="#modal7" class="modal-trigger btn-flat grey-text orange lighten-5"><span id="collaborate_container"></span></a>&nbsp;&nbsp;
+    -->
+</div>
+<div id="preloader_html" hidden>
+    <!--[CDATA[
+    <div class="center-align"><div class="progress"><div class="indeterminate blue"></div></div></div>
+    -->
+</div>
+<div id="floating_button_html" hidden>
+    <!--[CDATA[
+    <a href="#modal3" class="btn btn-floating pulse amber darken-1 tooltipped modal-trigger" data-position="top" data-tooltip="[[data-tooltip]]" ><i class="material-icons">vpn_key</i></a>
+    -->
+</div>
+<div id="vault_icon_container_html1" hidden>
+    <!--[CDATA[
+    <i class="material-icons tooltipped" data-tooltip="[[data-tooltip]]"  data-position="top">lock_outline</i><span>&nbsp;&nbsp;</span>
+    -->
+</div>
+<div id="vault_icon_container_html2" hidden>
+    <!--[CDATA[
+    <i class="material-icons tooltipped" data-tooltip="[[data-tooltip]]"  data-position="top">lock_open</i><span>&nbsp;&nbsp;</span>
+    -->
+</div>
+<div id="vault_icon_container_html3" hidden>
+    <!--[CDATA[
+    <a href="#modal1" class="modal-trigger white-text"><i class="material-icons tooltipped" data-tooltip="[[data-tooltip]]"  data-position="top">lock</i><span>&nbsp;&nbsp;</span></a>
+    -->
+</div>
+<div id="candidates_page_html" hidden>
+    <!--[CDATA[
+    <table class="highlight centered">
+        <thead id="candidates_thead" class="white blue-grey-text">
+            <tr>
+                <th class="column_photo">
+                    <i><h6 id="candidate_photo_th"></h6></i>
+                </th>
+                <th class="column_name">
+                    <i><h6 id="candidate_name_th"></h6></i>
+                </th>
+                <th class="column_party">
+                    <i><h6 id="candidate_party_th"></h6></i>
+                </th>
+                <th class="column_results">
+                    <i><h6 id="vote_donate_th"></h6></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="candidates_tbody"></tbody>
+    </table>
+    -->
+</div>
+<div id="donations_page_html" hidden>
+    <!--[CDATA[
+    <table class="highlight centered">
+        <thead id="candidates_thead" class="white blue-grey-text">
+            <tr>
+                <th class="column_photo">
+                    <i><h6 id="candidate_photo_th"></h6></i>
+                </th>
+                <th class="column_name">
+                    <i><h6 id="candidate_name_th"></h6></i>
+                </th>
+                <th class="column_party">
+                    <i><h6 id="candidate_party_th"></h6></i>
+                </th>
+                <th class="column_results">
+                    <i><h6 id="donations_th"></h6></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="candidates_tbody"></tbody>
+    </table>
+    -->
+</div>
+<div id="votation_page_html" hidden>
+    <!--[CDATA[
+    <table class="highlight centered">
+        <thead id="candidates_thead" class="white blue-grey-text">
+            <tr>
+                <th class="column_photo">
+                    <i><h6 id="candidate_photo_th"></h6></i>
+                </th>
+                <th class="column_name">
+                    <i><h6 id="candidate_name_th"></h6></i>
+                </th>
+                <th class="column_party">
+                    <i><h6 id="candidate_party_th"></h6></i>
+                </th>
+                <th class="column_results">
+                    <i><h6 id="votes_th"></h6></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="candidates_tbody"></tbody>
+    </table>
+    -->
+</div>
+<div id="parties_page_html" hidden>
+    <!--[CDATA[
+    <table class="highlight centered">
+        <thead id="parties_thead" class="white blue-grey-text">
+            <tr>
+                <th class="column_photo">
+                    <i><h6 id="party_photo_th"></h6></i>
+                </th>
+                <th class="column_party_name">
+                    <i><h6 id="party_name_th"></h6></i>
+                </th>
+                <th class="column_party_url">
+                    <i><h6 id="party_url_th"></h6></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="parties_tbody"></tbody>
+    </table>
+    -->
+</div>
+<div id="group_categories_page_html" hidden>
+    <!--[CDATA[
+    <table class="highlight centered">
+        <thead id="group_categories_thead" class="white blue-grey-text">
+            <tr>
+                <th class="column_category_id">
+                    <i><h6 id="group_category_id_th"></h6></i>
+                </th>
+                <th class="column_category_description">
+                    <i><h6 id="group_category_description_th"></h6></i>
+                </th>
+                <th class="column_enter_group">
+                    <i><h6 id="enter_group_th"></h6></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="group_categories_tbody"></tbody>
+    </table>
+    -->
+</div>
+<div id="questions_page_html" hidden>
+    <!--[CDATA[
+    <table class="highlight centered">
+        <thead id="questions_thead" class="white blue-grey-text">
+            <tr>
+                <th class="column_topic">
+                    <i><h6 id="question_topic_th"></h6></i>
+                </th>
+                <th class="column_content">
+                    <i><h6 id="question_content_th"></h6></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="questions_tbody"></tbody>
+    </table>
+    -->
+</div>
+<div id="candidates_page_items_html" hidden>
+    <!--[CDATA[
+    <tr>
+        <td>
+            <a href="[[candidate_page_href]]" target="_blank"><img class="candidates_page_items_img" src="[[photo]]"></a>
+        </td>
+        <td>
+            <h6>[[name]]</6>
+        </td>
+        <td>
+            <h6>[[party]]</h6>
+        </td>
+        <td>
+            <a href="#" id="[[vote_button_id]]" class="waves-effect btn-flat red lighten-2 white-text">[[vote_button_text]]</a>&nbsp;&nbsp;
+        </td>
+    </tr>
+    -->
+</div>
+<div id="votation_page_items_html" hidden>
+    <!--[CDATA[
+    <tr>
+        <td>
+            <a href="[[candidate_page_href]]" target="_blank"><img class="candidates_page_items_img" src="[[photo]]"></a>
+        </td>
+        <td>
+            <h6>[[name]]</6>
+        </td>
+        <td>
+            <h6>[[party]]</h6>
+        </td>
+        <td>
+            <h6>[[votes]]</h6>
+        </td>
+    </tr>
+    -->
+</div>
+<div id="donations_page_items_html" hidden>
+    <!--[CDATA[
+    <tr>
+        <td>
+            <a href="[[candidate_page_href]]" target="_blank"><img class="candidates_page_items_img" src="[[photo]]"></a>
+        </td>
+        <td>
+            <h6>[[name]]</6>
+        </td>
+        <td>
+            <h6>[[party]]</h6>
+        </td>
+        <td>
+            <h6>[[donations]]</h6>
+        </td>
+    </tr>
+    -->
+</div>
+<div id="parties_page_items_html" hidden>
+    <!--[CDATA[
+    <tr>
+        <td>
+            <a href="[[party_page_href]]" target="_blank"><img class="parties_page_items_img" src="[[photo]]"></a>
+        </td>
+        <td>
+            <h6>[[name]]</6>
+        </td>
+        <td>
+            <h6>[[url]]</h6>
+        </td>
+    </tr>
+    -->
+</div>
+<div id="group_categories_page_items_html" hidden>
+    <!--[CDATA[
+    <tr>
+        <td>
+            <h6>[[id]]</6>
+        </td>
+        <td>
+            <h6>[[content]]</6>
+        </td>
+        <td>
+            <a href="#" id="[[group_button_id]]" class="btn-flat waves-effect red lighten-2 white-text ">[[group_button_text]]</a>&nbsp;&nbsp;
+        </td>
+    </tr>
+    -->
+</div>
+<div id="questions_page_items_html" hidden>
+    <!--[CDATA[
+    <tr>
+        <td>
+            <h6>[[topic]]</6>
+        </td>
+        <td>
+            <h6>[[content]]</h6>
+        </td>
+    </tr>
+    -->
+</div>
+<div id="cant_open_candidates_page_html" hidden>
+    <!--[CDATA[
+        <h6 class="blue-grey-text" >[[text]]</h6>
+    -->
+</div>
+<div id="group_categories_select_item_html" hidden>
+    <!--[CDATA[
+    <option value="[[id_value]]">[[id_text]]</option>
+    -->
+</div>
+<div id="statistics_page_html" hidden>
+    <!--[CDATA[
+    <div class="row center">
+        <img id="data_image" src="imgs/data-visualization.jpg">
+    </div>
+    <div class="row center blue-grey-text">
+        <h6>[[text]]</h6>
+    </div>
+    <div class="row center">
+        <div class="col m1 xl2"></div>
+        <div id="statistics_buttons_div" class="flex-s center col s12 m10 xl8">
+            <button id="export_xlsx_button" class="btn-large spinner-green waves-effect waves-light" type="submit">
+                [[export_to_xlsx]]
+                <i class="material-icons right">send</i>
+            </button>
+            &nbsp;
+            <button id="export_ods_button" class="btn-large spinner-green waves-effect waves-light" type="submit">
+                [[export_to_ods]]
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+        <div class="col m1 xl2"></div>
+    </div>
+    -->
+</div>
+<div id="settings_page_html" hidden>
+    <!--[CDATA[
+    <div class="row">
+        <div class="col s1 m2 l3 xl4"></div>
+        <div class="input-field col s10 m8 l6 xl4">
+            <input id="login_provider_settings_input" type="text" value="[[login_provider]]" />
+            <label id="login_provider_settings_label" for="login_provider_settings_input"></label>
+        </div>
+        <div class="col s1 m2 l3 xl4"></div>
+    </div>
+    <div class="row">
+        <div class="col s1 m2 l3 xl4"></div>
+        <div class="input-field col s10 m8 l6 xl4">
+            <input id="ipfs_provider_settings_input" type="text" value="[[ipfs_provider]]" />
+            <label id="ipfs_provider_settings_label" for="ipfs_provider_settings_input"></label>
+        </div>
+        <div class="col s1 m2 l3 xl4"></div>
+    </div>
+    <div class="row">
+        <div class="col s1 m2 l3 xl4"></div>
+        <div class="input-field col s10 m8 l6 xl4">
+            <input id="donations_provider_settings_input" type="text" value="[[donations_provider]]" />
+            <label id="donations_provider_settings_label" for="donations_provider_settings_input"></label>
+        </div>
+        <div class="col s1 m2 l3 xl4"></div>
+    </div>
+    <div class="row">
+        <div class="col s1 m2 l3 xl4"></div>
+        <div class="col s10 m8 l6 xl4">
+            <input id="using_tor_settings_input" type="checkbox" class="filled-in" [[check_if_using_tor_browser]] />
+            <label id="using_tor_settings_label" for="using_tor_settings_input" ></span>
+        </div>
+        <div class="col s1 m2 l3 xl4"></div>
+    </div>
+    <div class="row">
+        <div class="col s1 m2 l3 xl4"></div>
+        <div class="input-field col s10 m8 l6 xl4">
+            <input id="tor_provider_settings_input" type="text" value="[[tor_provider]]" [[disable_if_using_tor_browser]] />
+            <label id="tor_provider_settings_label" for="tor_provider_settings_input"></label>
+        </div>
+        <div class="col s1 m2 l3 xl4"></div>
+    </div>
+    <div class="row">
+        <div class="col s1 m2 l3 xl4"></div>
+        <div class="input-field col s10 m8 l6 xl4">
+            <input id="alternative_info_provider_settings_input" type="text" value="[[alternative_info_provider]]" />
+            <label id="alternative_info_provider_settings_label" for="donations_provider_settings_input"></label>
+        </div>
+        <div class="col s1 m2 l3 xl4"></div>
+    </div>
+    <div class="row">
+        <div class="col s1 m2 l3 xl4"></div>
+        <div class="col s10 m8 l6 xl4">
+            <a href="#" id="update_settings_button" class="modal-action modal-close btn-flat white-text waves-effect waves-light orange right"></a>
+        </div>
+        <div class="col s1 m2 l3 xl4"></div>
+    </div>
+    -->
+</div>
+<div id="user_view_background_url" hidden>
+    <!--[CDATA[url('../imgs/user_view_background.jpg')-->
+</div>
+<div id="no_image_icon_url" hidden>
+    <!--[CDATA[../imgs/no-image-icon.png-->
+</div>
+<div id="start_page_html" hidden>
+    <!--[CDATA[
+    <div class="tooltiped" data-tooltip="[[data-tooltip]]" id="word_cloud"></div>
+    -->
+</div>
+
+<a id="file_saver" hidden></a>
+<div id="statistics_div" hidden></div>
+
+<script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="lang/lang.js"></script>
+<script type="text/javascript" src="lang/countries.js"></script>
+<script type="text/javascript" src="materialize/js/bin/materialize.min.js"></script>
+<script type="text/javascript" src="web3-js/web3.min.js"></script>
+<script type="text/javascript" src="js/home24.js"></script>
+<script type="text/javascript" src="urs/urs.min.js"></script>
+<script type="text/javascript" src="ethers-js/ethers.js"></script>
+<script type="text/javascript" src="ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script>
+<script type="text/javascript" src="bip39/sjcl-bip39.js"></script>
+<script type="text/javascript" src="bip39/jsbip39.js"></script>
+<script type="text/javascript" src="bip39/wordlist_english.js"></script>
+<script type="text/javascript" src="bs58/bs58-browser.js"></script>
+<script type="text/javascript" src="bitcoinjs-lib/bitcoinjs-lib-browser.min.js"></script>
+<script type="text/javascript" src="ntru/ntru.js"></script>
+<script type="text/javascript" src="xlsx/shim.min.js"></script>
+<script type="text/javascript" src="xlsx/xlsx.full.min.js"></script>
+<script type="text/javascript" src="jqcloud/jqcloud.js"></script>
+<script type="text/javascript" src="material-note/materialnote.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-ar-AR.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-bg-BG.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-ca-ES.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-cs-CZ.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-da-DK.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-de-DE.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-el-GR.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-es-ES.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-es-EU.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-fa-IR.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-fi-FI.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-fr-FR.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-gl-ES.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-he-IL.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-hr-HR.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-hu-HU.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-id-ID.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-it-IT.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-ja-JP.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-ko-KR.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-lt-LT.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-lt-LV.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-mn-MN.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-nb-NO.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-nl-NL.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-pl-PL.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-pt-BR.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-pt-PT.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-ro-RO.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-ru-RU.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-sk-SK.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-sl-SI.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-sr-RS.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-sr-RS-Latin.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-sv-SE.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-ta-IN.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-th-TH.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-tr-TR.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-uk-UA.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-vi-VN.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-zh-CN.js"> </script>
+<script type="text/javascript" src="material-note/lang/materialnote-zh-TW.js"> </script>
+</body>
+</html>

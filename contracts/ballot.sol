@@ -1,3 +1,8 @@
+// Kantcoin Project
+// https://kantcoin.org
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 pragma solidity ^0.4.16;
 ///@title Voting with groups.
 contract Campaign {
@@ -38,6 +43,7 @@ contract Campaign {
     struct Candidate {
         bytes32 ipfs; //IPFS page with the candidate info
         uint votesCount; //Number of accumulated votes/donations
+        address donee; //The address to receive donations on the Mainnet
     }
 
     struct Confirmation {
@@ -45,14 +51,14 @@ contract Campaign {
         bool ok;
     }
 
-    struct Whisper {
-        bytes32 part1;
-        bytes32 part2;
-        bytes32 part3;
-    }
+    //Can voters cancel their votes after being sent to candidates?
+    bool public canCancel;
 
     //The creator of the campaign
     address public chairperson;
+
+    //Who validates not fully confirmed votations
+    address public validator;
 
     //Groups that are composed of voters
     Group[] public groups;
@@ -63,16 +69,22 @@ contract Campaign {
     //Voters, who must also be registered in groups
     mapping (address => Voter) voters;
 
-    //How many donation rounds there will be
+    //Voters, who must also be registered in groups
+    mapping (address => uint) votersNTRUHash;
+
+    //User's hashcodes - should be unique
+    uint[] public hashcodes;
+
+    //How many donation ballots there will be
     uint public donationRounds;
 
-    //How many votation rounds there will be
+    //How many votation ballots there will be
     uint public votationRounds;
 
-    //How many donation rounds are left
+    //How many donation ballots are left
     uint public remainingDonationRounds;
 
-    //How many votation rounds are left
+    //How many votation ballots are left
     uint public remainingVotationRounds;
 
     //It represents the ballot that voters are voting in
@@ -82,34 +94,38 @@ contract Campaign {
     bytes32 public currentVoteMessage;
 
     //Maximum group size
-    uint constant public mgz = 12;
+    uint constant public mgz = 15;
 
-    //Group chairpersons' whispers
-    mapping (address => Whisper) whispers;
+    //Group chairpersons' tor addresses
+    mapping (address => mapping (uint => bytes32)) tors;
 
     //Group mappings
-    mapping (uint => mapping(uint => address)) gVoters;
+    mapping (uint => mapping (uint => address)) gVoters;
 
     //Ballot mapping
-    mapping (uint => mapping(uint => Candidate)) bCandidates;
+    mapping (uint => mapping (uint => Candidate)) bCandidates;
     uint[255] bCandidatesCounter;
 
+    //Ballot + candidate mapping
+    mapping (uint => mapping (uint => uint)) cancellations;
+
     //For statistics
-    mapping (uint => mapping(uint => mapping (bytes32 => uint))) votesPerBallotCandidateBCategory;
+    mapping (uint => mapping (uint => mapping (bytes32 => uint))) votesPerBallotCandidateGCategory;
 
     //Ballot + group mappings
-    mapping (uint => mapping(uint => mapping (uint => Vote))) gbVotes;
-    mapping (uint => mapping(uint => mapping (uint => Confirmation))) gbConfirmations;
-    mapping (uint => mapping(uint => bool)) gbCommitted;
-    mapping (uint => mapping(uint => bool)) gbMayCommit;
-    mapping (uint => mapping(uint => bool)) gbCommittedStatistics;
+    mapping (uint => mapping (uint => mapping (uint => Vote))) bgVotes;
+    mapping (uint => mapping (uint => mapping (uint => Confirmation))) bgConfirmations;
+    mapping (uint => mapping (uint => mapping (uint => bool))) bgpCommitted;
+    mapping (uint => mapping (uint => mapping (uint => bool))) bgpCommittedStatistics;
+    mapping (uint => mapping (uint => bool)) bgMayCommit;
+    mapping (uint => mapping (uint => bool)) validations;
 
     //Functions
 
     //Create a new campaign which can have several ballots within
     function Campaign(uint vRounds, uint dRounds) public payable{
-        //The maximum number of rounds is 10 (donations: 9)
-        require (vRounds + dRounds >= 1 && vRounds + dRounds <= 10);
+        //The maximum number of ballots is 6 (donations: 1)
+        require (vRounds > 0 && vRounds <= 5 && dRounds <= 1 && (vRounds + dRounds) <= 5);
 
         chairperson = msg.sender;
         votationRounds = vRounds;
@@ -118,12 +134,19 @@ contract Campaign {
         remainingDonationRounds = dRounds;
     }
 
+    //It defines whether voters can cancel their votes after being sent to candidates
+    function defineCanCancel(bool b){
+        require (msg.sender == chairperson);
+        canCancel = b;
+    }
+
     //The insertion should be done after the creation, since there will be many candidates lists
     //Different ballots may have different lists of candidates
-    function addCandidateIntoBallot(uint ballot, uint position, bytes32 ipfs) public {
+    function addCandidateIntoBallot(uint ballot, uint position, bytes32 ipfs, address donee) public {
         require (msg.sender == chairperson);
         require (bCandidates[ballot][position].ipfs == bytes32(0));
         bCandidates[ballot][position].ipfs = ipfs;
+        bCandidates[ballot][position].donee = donee;
     }
 
     //In order to know how many candidates there are in a ballot
@@ -132,9 +155,10 @@ contract Campaign {
     }
 
     //Get the candidate's ipfs
-    function getCandidate(uint ballot, uint candidate) public view returns (bytes32 ipfs, uint count){
+    function getCandidate(uint ballot, uint candidate) public view returns (bytes32 ipfs, uint count, address donee){
         ipfs = bCandidates[ballot][candidate].ipfs;
         count = bCandidates[ballot][candidate].votesCount;
+        donee = bCandidates[ballot][candidate].donee;
     }
 
     //Insert new ballot in ballots array
@@ -196,17 +220,28 @@ contract Campaign {
         currentVoteMessage = message;
     }
 
-    //Sets the group chairperson's whispers
-    function defineWhisper(address person, bytes32 part1, bytes32 part2, bytes32 part3) public {
+    //It sets the group chairperson's tor addresses and pubkeys
+    function defineTor(address person, uint pos, bytes32 value) public {
         require (msg.sender == person);
-        whispers[person].part1 = part1;
-        whispers[person].part2 = part2;
-        whispers[person].part3 = part3;
+        tors[person][pos] = value;
     }
 
-    //Returns the group chairperson's whisper address
-    function getWhisper(address person) public view returns (bytes32, bytes32, bytes32){
-        return (whispers[person].part1, whispers[person].part2, whispers[person].part3);
+    //It returns the group chairperson's tor address
+    function getTor(address person, uint pos) public view returns (bytes32){
+        return tors[person][pos];
+    }
+
+    //It increases by one unit the number of cancellations of some candidate
+    function incrementCancellations(uint ballot, uint candidate) public {
+        require (msg.sender == chairperson);
+        require (ballots[ballot].closed);
+
+        cancellations[ballot][candidate] += 1;
+    }
+
+    //It returns the number of cancellations of some candidate
+    function getCancellations(uint ballot, uint candidate) public view returns (uint){
+        return cancellations[ballot][candidate];
     }
 
     //Adding a group with its chairperson
@@ -266,32 +301,60 @@ contract Campaign {
         voters[toVoter].prefix = 0;
     }
 
-    //Adgd the voter to a group to he/she can vote
-    //May only be called by the voter.
-    function addVoterToGroup(uint grp) public {
+    //Add the voter to a group to he/she can vote
+    function addVoterToGroup(address voter, uint grp) public {
+        require (msg.sender == chairperson);
         require (!groups[grp].closed);
-        require (!voters[msg.sender].hasGroup1);
+        require (!voters[voter].hasGroup1);
         require (groups[grp].size < mgz);
-        require (groups[grp].value == voters[msg.sender].cash);
+        require (groups[grp].value == voters[voter].cash);
         //The chairperson should give right to vote to this voter first
-        require (voters[msg.sender].prefix > 0);
+        require (voters[voter].prefix > 0);
 
         //Making the voter part of a group
-        voters[msg.sender].group = grp;
-        voters[msg.sender].hasGroup1 = true;
+        voters[voter].group = grp;
+        voters[voter].hasGroup1 = true;
         groups[grp].size += 1;
     }
 
     //Adding voter to gVoters array
-    function addVoterToGVoters(uint grp, uint position) public {
+    function addVoterToGVoters(address voter, uint grp, uint position) public {
+        require (msg.sender == chairperson);
         require (position < mgz);
         require (gVoters[grp][position] == address(0));
-        require (voters[msg.sender].group == grp);
-        require (voters[msg.sender].hasGroup1);
-        require (!voters[msg.sender].hasGroup2);
+        require (voters[voter].group == grp);
+        require (voters[voter].hasGroup1);
+        require (!voters[voter].hasGroup2);
 
-        gVoters[grp][position] = msg.sender;
-        voters[msg.sender].hasGroup2 = true;
+        gVoters[grp][position] = voter;
+        voters[voter].hasGroup2 = true;
+    }
+
+    //Add voter's NTRU hashcode
+    function defineVoterNTRUHash(address voter, uint hashcode) public {
+        require (msg.sender == chairperson);
+        votersNTRUHash[voter] = hashcode;
+    }
+
+    //Get voter's NTRU hascode to confirm his or her public key
+    function getVoterNTRUHash(address voter) public view returns (uint){
+        return votersNTRUHash[voter];
+    }
+
+    //Add the user hashcode to a list (it can be generated from the user name)
+    function addVoterHashcode(uint hashcode) public {
+        require (msg.sender == chairperson);
+        hashcodes.push(hashcode);
+    }
+
+    //Search a hashcode (before inserting a new voter)
+    function findVoterHashcode(uint hashcode) public view returns (bool){
+        for (uint i = 0; i < hashcodes.length; i++){
+            if (hashcode == hashcodes[i]){
+                return true;
+            }
+        }
+        return false;
     }
 
     //Get voter's info
@@ -304,7 +367,7 @@ contract Campaign {
         hasGroup2 = voters[voter].hasGroup2;
     }
 
-    //Returns the addresses of the members of a group
+    //It returns the addresses of the members of a group
     function getGroupVoters(uint group) public view returns (address[mgz]){
         address[mgz] memory addresses;
         for (uint i = 0; i < mgz; i++){
@@ -313,7 +376,7 @@ contract Campaign {
         return addresses;
     }
 
-    //Returns the pubkeys of the members of a group
+    //It returns the pubkeys of the members of a group
     function getGroupPubkeys(uint group) public view returns (uint[mgz], bytes32[mgz]){
         bytes32[mgz] memory pubkeys;
         uint[mgz] memory prefixes;
@@ -325,7 +388,19 @@ contract Campaign {
         return (prefixes, pubkeys);
     }
 
+    //It validates a ballot, allowing it to be committed even if there are not enough confirmations
+    function validate(uint ballot, uint grp) public {
+        require (msg.sender == validator);
+        validations[ballot][grp] = true;
+    }
 
+    //Who validates not fully confirmed votations
+    function defineValidator(address person) public {
+        require (msg.sender == chairperson);
+        require (validator == address(0));
+
+        validator = person;
+    }
     //Someone that will be in charge of checking the signatures and voting
     function defineGroupChairperson(address person, uint grp) public {
         require (msg.sender == chairperson);
@@ -343,22 +418,22 @@ contract Campaign {
         require (!ballots[ballot].stopped);
         require (ballot < (donationRounds + votationRounds));
         require (position < mgz);
-        require (gbVotes[ballot][grp][position].fNumber == bytes32(0));
+        require (bgVotes[ballot][grp][position].fNumber == bytes32(0));
 
         //Verify if this "first number" has already been entered in the array
         for (uint i = 0; i < mgz; i++) {
-            if (gbVotes[ballot][grp][i].fNumber == first_number){
+            if (bgVotes[ballot][grp][i].fNumber == first_number){
                 return;
             }
         }
 
-        gbVotes[ballot][grp][position].fNumber = first_number;
-        gbVotes[ballot][grp][position].candidate = the_candidate;
+        bgVotes[ballot][grp][position].fNumber = first_number;
+        bgVotes[ballot][grp][position].candidate = the_candidate;
     }
 
     //For the statistics
     function getVotesPerBallotCandidateCategory(uint ballot, uint candidate, bytes32 category) public view returns (uint){
-        return votesPerBallotCandidateBCategory[ballot][candidate][category];
+        return votesPerBallotCandidateGCategory[ballot][candidate][category];
     }
 
     //The voters have to verify if their messages was correctly assigned and then confirm the vote list
@@ -367,7 +442,7 @@ contract Campaign {
         uint grp = voters[msg.sender].group;
 
         require (position < mgz);
-        require (gbConfirmations[ballot][grp][position].voter == address(0));
+        require (bgConfirmations[ballot][grp][position].voter == address(0));
         require (!ballots[ballot].closed);
         require (ballots[ballot].stopped);
         //The voter should be part of a group in order to confirm the votation
@@ -377,125 +452,121 @@ contract Campaign {
         require (voters[msg.sender].prefix > 0);
 
         for (uint i = 0; i < mgz; i++) {
-            if (gbConfirmations[ballot][grp][i].voter == msg.sender){
+            if (bgConfirmations[ballot][grp][i].voter == msg.sender){
                 return;
             }
         }
 
-        gbConfirmations[ballot][grp][position].voter = msg.sender;
-        gbConfirmations[ballot][grp][position].ok = ok;
+        bgConfirmations[ballot][grp][position].voter = msg.sender;
+        bgConfirmations[ballot][grp][position].ok = ok;
     }
 
-    //Returns all sent confirmations regarding a ballot and a group
+    //It returns all sent confirmations regarding a ballot and a group
     function getConfirmations(uint ballot, uint grp) public view returns (address[mgz], bool[mgz]){
         address[mgz] memory addresses;
         bool[mgz] memory oks;
         for (uint i = 0; i < mgz; i++){
-            addresses[i] = gbConfirmations[ballot][grp][i].voter;
-            oks[i] = gbConfirmations[ballot][grp][i].ok;
+            addresses[i] = bgConfirmations[ballot][grp][i].voter;
+            oks[i] = bgConfirmations[ballot][grp][i].ok;
         }
         return (addresses, oks);
     }
 
-    //Returns all sent votes regarding a ballot and a group
+    //It returns all sent votes regarding a ballot and a group
     function getVotes(uint ballot, uint grp) public view returns (bytes32[mgz], uint[mgz]){
         bytes32[mgz] memory numbers;
         uint[mgz] memory candidates;
         for (uint i = 0; i < mgz; i++){
-            numbers[i] = gbVotes[ballot][grp][i].fNumber;
-            candidates[i] = gbVotes[ballot][grp][i].candidate;
+            numbers[i] = bgVotes[ballot][grp][i].fNumber;
+            candidates[i] = bgVotes[ballot][grp][i].candidate;
         }
         return (numbers, candidates);
     }
 
-    //Checks the requirements before committing
+    //It checks the requirements before committing
     //Solidity/Geth apparently does not work with long functions
     function preCommit(uint ballot, uint grp) public {
         require (!groups[grp].closed);
         require (ballots[ballot].closed); //The ballot must be closed
         //Only the group chairperson can commit the votation
         require (groups[grp].cPerson == msg.sender);
-        require (!gbMayCommit[ballot][grp]);
+        require (!bgMayCommit[ballot][grp]);
 
         uint count1 = 0;
         uint count2 = 0;
         for (uint j = 0; j < mgz; j++) {
             //If a voter send an error message (not ok), something went wrong
-            if ((gbConfirmations[ballot][grp][j].voter != address(0)) && !gbConfirmations[ballot][grp][j].ok){
+            if ((bgConfirmations[ballot][grp][j].voter != address(0)) && !bgConfirmations[ballot][grp][j].ok && !validations[ballot][grp]){
                 return;
             }
-            if (gbVotes[ballot][grp][j].fNumber != bytes32(0)){
+            if (bgVotes[ballot][grp][j].fNumber != bytes32(0)){
                 count1 += 1;
             }
-            if (gbConfirmations[ballot][grp][j].voter != address(0)){
+            if (bgConfirmations[ballot][grp][j].voter != address(0)){
                 count2 += 1;
             }
         }
         //The same number of people who voted should confirm the vote
-        require (count1 == count2);
-        gbMayCommit[ballot][grp] = true;
+        //require (count1 == count2 || validations[ballot][grp]);
+        bgMayCommit[ballot][grp] = true;
     }
 
     //Check if the group chairperson may commit
     function mayCommit(uint ballot, uint grp) public view returns (bool){
-        return gbMayCommit[ballot][grp];
+        return bgMayCommit[ballot][grp];
     }
 
-    //Check whether the votation/donation was committed or not
-    function committed(uint ballot, uint grp) public view returns (bool){
-        return gbCommitted[ballot][grp];
+    //Check whether the votation/donation was committed (for that ballot, group and position), or not
+    function committed(uint ballot, uint grp, uint position) public view returns (bool){
+        return bgpCommitted[ballot][grp][position];
     }
 
-    //Check whether the votation/donation statistics was committed or not
-    function committedStatistics(uint ballot, uint grp) public view returns (bool){
-        return gbCommittedStatistics[ballot][grp];
+    //Check whether the votation/donation statistics was committed (for that ballot, group and position), or not
+    function committedStatistics(uint ballot, uint grp, uint position) public view returns (bool){
+        return bgpCommittedStatistics[ballot][grp][position];
     }
 
     //Committing the results and casting the votes
-    function commitVotation(uint ballot, uint grp) public {
+    function commitVotationPerPosition(uint ballot, uint grp, uint position) public {
         require (!groups[grp].closed);
         require (ballots[ballot].closed); //The ballot must be closed
         require (groups[grp].cPerson == msg.sender);
         //The ballot must not be a "donations ballot"
         require (!ballots[ballot].donations);
         //The votes must not have been committed before
-        require (!gbCommitted[ballot][grp]);
+        require (!bgpCommitted[ballot][grp][position]);
 
-        for (uint i = 0; i < mgz; i++) {
-            if (gbVotes[ballot][grp][i].fNumber != bytes32(0)){
-                //Get the chosen candidate
-                uint candidate = gbVotes[ballot][grp][i].candidate;
-                //Add this vote
-                bCandidates[ballot][candidate].votesCount += 1;
-            }
+        if (bgVotes[ballot][grp][position].fNumber != bytes32(0)){
+            //Get the chosen candidate
+            uint candidate = bgVotes[ballot][grp][position].candidate;
+            //Add this vote
+            bCandidates[ballot][candidate].votesCount += 1;
+            bgpCommitted[ballot][grp][position] = true;
         }
-        gbCommitted[ballot][grp] = true;
     }
 
     //Committing the statistics regarding the votation
-    function commitVotationStatistics(uint ballot, uint grp) public {
+    function commitVotationStatisticsPerPosition(uint ballot, uint grp, uint position) public {
         require (!groups[grp].closed);
         require (ballots[ballot].closed); //The ballot must be closed
         require (groups[grp].cPerson == msg.sender);
         //The ballot must not be a "donations ballot"
         require (!ballots[ballot].donations);
         //The votes must not have been committed before
-        require (!gbCommittedStatistics[ballot][grp]);
+        require (!bgpCommittedStatistics[ballot][grp][position]);
 
-        for (uint i = 0; i < mgz; i++) {
-            if (gbVotes[ballot][grp][i].fNumber != bytes32(0)){
-                //Get the chosen candidate
-                uint candidate = gbVotes[ballot][grp][i].candidate;
-                //Statistics
-                bytes32 category = groups[grp].category;
-                votesPerBallotCandidateBCategory[ballot][candidate][category] += 1;
-            }
+        if (bgVotes[ballot][grp][position].fNumber != bytes32(0)){
+            //Get the chosen candidate
+            uint candidate = bgVotes[ballot][grp][position].candidate;
+            //Statistics
+            bytes32 category = groups[grp].category;
+            votesPerBallotCandidateGCategory[ballot][candidate][category] += 1;
+            bgpCommittedStatistics[ballot][grp][position] = true;
         }
-        gbCommittedStatistics[ballot][grp] = true;
     }
 
     //Committing the results and casting the donations
-    function commitDonations(uint ballot, uint grp) public {
+    function commitDonations(uint ballot, uint grp, uint position) public {
         require (!groups[grp].closed);
         require (ballots[ballot].closed); //The ballot must be closed
         //Only the group chairperson can commit the donations
@@ -505,24 +576,22 @@ contract Campaign {
         //There must be cash in the group
         require (groups[grp].value > 0);
         //The donations must not have been committed before
-        require (!gbCommitted[ballot][grp]);
+        require (!bgpCommitted[ballot][grp][position]);
 
         //Calculating the donation amount
         uint donationAmount = groups[grp].value / donationRounds;
 
-        for (uint i = 0; i < mgz; i++) {
-            if (gbVotes[ballot][grp][i].fNumber != bytes32(0)){
-                //Get the chosen candidate
-                uint candidate = gbVotes[ballot][grp][i].candidate;
-                //Add this donation to the candidate/candidate's budget
-                bCandidates[ballot][candidate].votesCount += donationAmount;
-            }
+        if (bgVotes[ballot][grp][position].fNumber != bytes32(0)){
+            //Get the chosen candidate
+            uint candidate = bgVotes[ballot][grp][position].candidate;
+            //Add this donation to the candidate/candidate's budget
+            bCandidates[ballot][candidate].votesCount += donationAmount;
+            bgpCommitted[ballot][grp][position]= true;
         }
-        gbCommitted[ballot][grp]= true;
     }
 
     //Committing statistics regarding donations
-    function commitDonationsStatistics(uint ballot, uint grp) public {
+    function commitDonationsStatistics(uint ballot, uint grp, uint position) public {
         require (!groups[grp].closed);
         require (ballots[ballot].closed); //The ballot must be closed
         //Only the group chairperson can commit the donations
@@ -532,21 +601,19 @@ contract Campaign {
         //There must be cash in the group
         require (groups[grp].value > 0);
         //The donations must not have been committed before
-        require (!gbCommittedStatistics[ballot][grp]);
+        require (!bgpCommittedStatistics[ballot][grp][position]);
 
         //Calculating the donation amount
         uint donationAmount = groups[grp].value / donationRounds;
 
-        for (uint i = 0; i < mgz; i++) {
-            if (gbVotes[ballot][grp][i].fNumber != bytes32(0)){
-                //Get the chosen candidate
-                uint candidate = gbVotes[ballot][grp][i].candidate;
-                //Statistics
-                bytes32 category = groups[grp].category;
-                votesPerBallotCandidateBCategory[ballot][candidate][category] += donationAmount;
-            }
+        if (bgVotes[ballot][grp][position].fNumber != bytes32(0)){
+            //Get the chosen candidate
+            uint candidate = bgVotes[ballot][grp][position].candidate;
+            //Statistics
+            bytes32 category = groups[grp].category;
+            votesPerBallotCandidateGCategory[ballot][candidate][category] += donationAmount;
+            bgpCommittedStatistics[ballot][grp][position] = true;
         }
-        gbCommittedStatistics[ballot][grp]= true;
     }
 
     //groups.length
