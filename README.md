@@ -35,6 +35,7 @@
     13. [Vote verification](#vote-verification)
     14. [Vote confirmation](#vote-confirmation)
     15. [Vote allocation](#vote-allocation)
+    16. [Vote cancellation](#vote-cancellation)
 
 ## Motivation
 
