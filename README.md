@@ -36,6 +36,7 @@
     14. [Vote confirmation](#vote-confirmation)
     15. [Vote allocation](#vote-allocation)
     16. [Vote cancellation](#vote-cancellation)
+5. [Help us](#help-us)
 
 ## Motivation
 
@@ -169,4 +170,19 @@ to leverage this approach by allowing voters who have been coerced during regist
 invalidate their coerced credentials at some later opportunity and to receive new valid credentials.
 
 For this reason, we have implemented a way to secretly, outside the blockchain, cancel votes. While the blockchain and URS are intended to protect voters against the government, this step is intended to protect voters against the rest of society.
+
+## Help us
+
+If you want to help, please consider taking a look at:
+- website/lang/lang.js - for translations.
+- main.go, contracts/ballot.sol and website/js/home.js - to understand the project and to suggest enhancements. Also consider being part of the project here on Github.
+- website/home.html and website/css/custom.css - to customize the appearence of the page. It was planned to be easy to customize if you know a little of materializecss.
+
+You can also help us by:
+- starting a tor2web proxy in blocklist mode with the onion addresses of the campaigns you want to support.
+- creating a "login provider", a simple web service which will be explained with an API.
+- hosting the website/home.html. It is a static web page that does not run external scripts and must have a very restrictive Content Security Policy in order to protect voters' privacy.
+- using the project in your university, NGO, party, school, etc. But remember that the project is in alpha stage.
+
+If you are a researcher, please try to address this [issue](https://arxiv.org/ftp/arxiv/papers/1405/1405.3177.pdf) and implement it in javascript.
 
