@@ -2524,7 +2524,7 @@ function newGroupCategoriesPage(){
                 let i = 0
                 let key = {}
                 let value = {}
-                let mgz = the_contract.mgz().toNumber()
+                let mgz = (using_local_server ? the_contract.mgz().toNumber() : 15)
                 do{
                     value = values.next()
                     key = keys.next()
