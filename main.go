@@ -810,9 +810,16 @@ func main() {
 				},
 			},
 			{
+				Label: astilectron.PtrStr("Help"),
+				OnClick: func(e astilectron.Event) (deleteListener bool) {
+					open.Run("https://sourceforge.net/p/kantcoin/wiki/Help/")
+					return
+				},
+			},
+			{
 				Label: astilectron.PtrStr("Version"),
 				SubMenu: []*astilectron.MenuItemOptions{
-					{Label: astilectron.PtrStr("Tests 0.1"), Type: astilectron.MenuItemTypeNormal,},
+					{Label: astilectron.PtrStr("v0.2.1"), Type: astilectron.MenuItemTypeNormal,},
 				},
 			},
 			{

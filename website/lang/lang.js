@@ -357,11 +357,14 @@ klang = {
         for_creators_button: "Criadores",
         acknowledgment: "Agradecimentos",
         insert_authorized_voters_label: "Inserir ou atualizar os eleitores autorizados",
-        insert_authorized_voters_message: "Insira os eleitores na mesma linha, separados por ponto e vírgula. Se você inserir eleitores neste campo, somente eles poderão votar.",
+        insert_authorized_voters_message: "Insira os eleitores separados por ponto e vírgula. Se você inserir eleitores neste campo, somente eles poderão votar.",
         insert_authorized_voters_button: "Inserir",
         canceled_votes: "Votos anulados",
         ballots: "Turnos",
-        canceled_votes_file: "anulados.xlsx"
+        canceled_votes_file: "anulados.xlsx",
+        cant_add_enode: "Limite de enodes já atingido",
+        occupancy_rate: "Taxa de ocupação: "
+
     },
     spanish: {
         lang: "spanish",
@@ -713,11 +716,13 @@ klang = {
         for_creators_button: "Creadores",
         acknowledgment: "Agradecimientos",
         insert_authorized_voters_label: "Insertar o actualizar los votantes autorizados",
-        insert_authorized_voters_message: "Inserte los votantes en la misma línea, separados por punto y coma. Si introduce los votantes en este campo, sólo ellos pueden votar.",
+        insert_authorized_voters_message: "Inserte los votantes separados por punto y coma. Si introduce los votantes en este campo, sólo ellos pueden votar.",
         insert_authorized_voters_button: "Insertar",
         canceled_votes: "Votos anulados",
         ballots: "Vueltas",
-        canceled_votes_file: "anulados.xlsx"
+        canceled_votes_file: "anulados.xlsx",
+        cant_add_enode: "Límite de enodes ya alcanzado",
+        occupancy_rate: "Tasa de ocupación: "
     },
     english: {
         lang: "english",
@@ -1069,11 +1074,13 @@ klang = {
         for_creators_button: "Creators",
         acknowledgment: "Acknowledgment",
         insert_authorized_voters_label: "Insert or update the authorized voters",
-        insert_authorized_voters_message: "Insert voters in the same line, set off with semicolons. If you enter voters in this field, only they will be able to vote.",
+        insert_authorized_voters_message: "Insert voters set off with semicolons. If you enter voters in this field, only they will be able to vote.",
         insert_authorized_voters_button: "Insert",
         canceled_votes: "Canceled votes",
         ballots: "Rounds",
-        canceled_votes_file: "canceled.xlsx"
+        canceled_votes_file: "canceled.xlsx",
+        cant_add_enode: "Enodes limit already reached",
+        occupancy_rate: "Occupancy rate: "
     },
     french:  {
         lang: "french",
@@ -1425,11 +1432,13 @@ klang = {
         for_creators_button: "Créateurs",
         acknowledgment: "Reconnaissance",
         insert_authorized_voters_label: "Insérer ou mettre à jour les électeurs autorisés",
-        insert_authorized_voters_message: "Insérez les électeurs dans la même ligne, séparés par des points-virgules. Si vous entrez des électeurs dans ce champ, ils seront les seuls à pouvoir voter.",
+        insert_authorized_voters_message: "Insérez les électeurs séparés par des points-virgules. Si vous entrez des électeurs dans ce champ, ils seront les seuls à pouvoir voter.",
         insert_authorized_voters_button: "Insérer",
         canceled_votes: "Votes annulés",
         ballots: "Tours",
-        canceled_votes_file: "annules.xlsx"
+        canceled_votes_file: "annules.xlsx",
+        cant_add_enode: "Limite des enodes déjà atteinte",
+        occupancy_rate: "Taux d'occupation: "
     }
 }
 

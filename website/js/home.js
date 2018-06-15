@@ -1738,10 +1738,6 @@ function loadQuestions(){
         }
     })
 
-    /*request.addEventListener("error", function() {
-        sleep(45000).then(loadQuestions)
-    })*/
-
     request.open('GET', ((!ipfs_provider || isOwner()) && using_local_server ? "http://" + localhost127 + ":8080/ipns/" : ipfs_provider + "/ipns/") + ipns + "/questions", true)
     request.send()
 }
@@ -2528,15 +2524,46 @@ function newGroupCategoriesPage(){
                 let i = 0
                 let key = {}
                 let value = {}
+                let mgz = the_contract.mgz().toNumber()
                 do{
                     value = values.next()
                     key = keys.next()
 
                     if (!key.done){
                         let id = key.value
+                        let id_label = id
                         let content = value.value.content
-                        group_categories_tbody.innerHTML += group_categories_page_items_html.innerHTML.replace("<!--[CDATA[","").replace("-->","").replace("[[content]]", content).replace("[[group_button_text]]", klang.group_button_text).replace("[[group_button_id]]", "group_button_id_" + i).replace("[[id]]", id)
+
+                        if (using_local_server){
+                            //Placing an alert icon in front of the group category id if its groups are almost full
+                            let groups = (json_groups[id] ? json_groups[id].split(","): [])
+                            let voters_counter = 0
+                            let capacity = 1
+                            for (let g = 0; g < groups.length; g++){
+                                if (groups[g]){
+                                    voters_counter += the_contract.groups(0)[3].toNumber()
+                                    capacity += mgz
+                                }
+                            }
+
+                            if ((voters_counter/capacity) <= 0.70){
+                                id_label = "<span id='gc_" + id + "' class='white tooltiped' data-tooltip='" + klang.occupancy_rate + Math.floor((voters_counter/capacity) * 100) + "%'>" + id_label + "</span>"
+                            } else if ((voters_counter/capacity) > 0.70){
+                                id_label = "<span id='gc_" + id + "' class='yellow lighten-2 tooltiped' data-tooltip='" + klang.occupancy_rate + Math.floor((voters_counter/capacity) * 100) + "%'>" + id_label + "</span>"
+                            } else if ((voters_counter/capacity) > 0.9){
+                                id_label = "<span id='gc_" + id + "' class='red lighten-2 tooltiped' data-tooltip='" + klang.occupancy_rate + Math.floor((voters_counter/capacity) * 100) + "%'>" + id_label + "</span>"
+                            }
+                        }
+
+                        group_categories_tbody.innerHTML += group_categories_page_items_html.innerHTML.replace("<!--[CDATA[","").replace("-->","").replace("[[content]]", content).replace("[[group_button_text]]", klang.group_button_text).replace("[[group_button_id]]", "group_button_id_" + i).replace("[[id]]", id_label)
                         group_categories_select.innerHTML += group_categories_select_item_html.innerHTML.replace("<!--[CDATA[","").replace("-->","").replace("[[id]]", id)
+
+                        if (using_local_server){
+                            sleep(200).then(function(){
+                                let gc_element = $("#gc_" + id)
+                                gc_element.tooltip()
+                            })
+                        }
                     }
                     i++
                 }
@@ -4539,6 +4566,11 @@ function insertCampaign() {
                     header_title.innerHTML = klang.wait_until_ipns_available
                     console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash)
                     the_contract = contract
+
+                    sleep(10000).then(function () { //!!!!!!!!! While the validator is not yet fully implemented
+                        the_contract.defineValidator(wallet.address.toLowerCase())
+                    })
+
                     current_campaign.contract = contract.address //contract.address.substring(2).toLowerCase()
 
                     //Re-inserting campaign profile page into IPFS
@@ -5056,6 +5088,11 @@ function storeEnode(enode){
             content_url = this.responseText + "," + enode
         }
 
+        if (content_url.split(",").length > current_campaign.how_many_enodes){
+            Materialize.toast(klang.cant_add_enode, 3500, 'rounded')
+            return
+        }
+
         let request = new XMLHttpRequest()
         request.open('GET', "http://" + localhost127 + ":1985/queryAddProfile=" + current_campaign.id + THE_AND + content_url + THE_AND + "enodes", true)
         request.send()
@@ -5097,6 +5134,7 @@ function preCommitVotes(){
         if (group !== undefined && group !== null){
             let current_ballot = the_contract.currentBallot().toNumber()
             the_contract.preCommit(current_ballot, group)
+            the_contract.validate(current_ballot, group) //!!!!!!!!! While the validator is not yet fully implemented
         }
     })
 }
@@ -5403,12 +5441,6 @@ function createGroups(){
         last_created_groups = Date.now()
     } else{
         Materialize.toast(klang.wait + " (" + (WAIT_TO_CREATE_GROUPS/1000) + "s)", 2000, 'rounded')
-        return
-    }
-
-    let number_ballots = the_contract.howManyBallots().toNumber()
-    if (number_ballots == 0){
-        Materialize.toast(klang.must_create_ballot, 3000, 'rounded')
         return
     }
 
@@ -5796,9 +5828,15 @@ function sendVotes(){
  * Send the enodes that neither belong to the campaign creator nor to the group chairpersons
  */
 function sendObserversEnodes(){
+    if (current_campaign.how_many_enodes < 2){
+        Materialize.toast(klang.cant_add_enode, 3500, 'rounded')
+        return
+    }
+
     let enodes_text = ""
     if (observers_enodes_textarea.value && the_contract){
         enodes_text = observers_enodes_textarea.value.replace(/\n/g, ",")
+        enodes_text = enodes_text.replace(",,,", ",").replace(",,",",")
     } else {
         Materialize.toast(klang.error, 2000, 'rounded')
         return
@@ -5810,14 +5848,18 @@ function sendObserversEnodes(){
         let request = new XMLHttpRequest()
         request.addEventListener("load", function() {
             if (this.responseText == ""){
-                Materialize.toast(klang.cant_open_candidates_page1, 3500, 'rounded')
-                return
+                 return
             }
             let content_url = ""
             if (this.responseText == "empty"){
                 content_url = enodes_text
             } else {
                 content_url = this.responseText + "," + enodes_text
+            }
+
+            if (content_url.split(",").length > current_campaign.how_many_enodes){
+                Materialize.toast(klang.cant_add_enode, 3500, 'rounded')
+                return
             }
 
             let request2 = new XMLHttpRequest()
@@ -6061,7 +6103,7 @@ async function addTorAddressIntoBlockchain(){
     let public_key = ""
     if (!localStorage.getItem("kantcoin_tor_pubkey")){
         //Using this algorithm because it is meant to be quantum computers resistant
-        let keyPair = await ntru.keyPair() //!!!!!!!! provide seed
+        let keyPair = await ntru.keyPair()
 
         public_key = convertArrayBufferViewtoString(keyPair.publicKey)
         let private_key = convertArrayBufferViewtoString(keyPair.privateKey)
