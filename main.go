@@ -48,20 +48,10 @@ import (
 	"golang.org/x/crypto/pbkdf2"
 	"crypto/sha256"
 	"github.com/peterbourgon/diskv"
+	"encoding/json"
 )
 
 /******************** Constants ********************/
-
-// Installation links
-const URL_GETH_WINDOWS = "https://gethstore.blob.core.windows.net/builds/geth-windows-amd64-1.8.10-eae63c51.zip"
-const URL_GETH_LINUX = "https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.10-eae63c51.tar.gz"
-const URL_IPFS_WINDOWS = "https://dist.ipfs.io/go-ipfs/v0.4.15/go-ipfs_v0.4.15_windows-amd64.zip"
-const URL_IPFS_LINUX = "https://dist.ipfs.io/go-ipfs/v0.4.15/go-ipfs_v0.4.15_linux-amd64.tar.gz"
-const URL_TOR_WINDOWS = "https://www.torproject.org/dist/torbrowser/7.5.4/tor-win32-0.3.2.10.zip"
-
-//Geth and IPFS folders
-const GETH_FOLDER = "geth-windows-amd64-1.8.10-eae63c51"
-const IPFS_FOLDER = "go-ipfs"
 
 const THE_AND = "--and--"
 const QUESTION_MARK = "--question--"
@@ -167,7 +157,29 @@ type CampaignIPNS struct{
 	id string
 }
 
+//Struct to receive the installation links from an http response
+type InstallationLinks struct{
+	UGW string `json:"url_geth_windows"`
+	UGL string `json:"url_geth_linux"`
+	UIW string `json:"url_ipfs_windows"`
+	UIL string `json:"url_ipfs_linux"`
+	UTW string `json:"url_tor_windows"`
+	GF string `json:"geth_folder"`
+	IF string `json:"ipfs_folder"`
+}
+
 /******************** Global variables ********************/
+
+// Installation links
+var url_geth_windows = "https://gethstore.blob.core.windows.net/builds/geth-windows-amd64-1.8.11-dea1ce05.zip"
+var url_geth_linux = "https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.8.11-dea1ce05.tar.gz"
+var url_ipfs_windows = "https://dist.ipfs.io/go-ipfs/v0.4.15/go-ipfs_v0.4.15_windows-amd64.zip"
+var url_ipfs_linux = "https://dist.ipfs.io/go-ipfs/v0.4.15/go-ipfs_v0.4.15_linux-amd64.tar.gz"
+var url_tor_windows = ""//"https://www.torproject.org/dist/torbrowser/7.5.6/tor-win32-0.3.3.7.zip"
+
+//Geth and IPFS folders
+var geth_folder = "geth-windows-amd64-1.8.11-dea1ce05"
+var ipfs_folder = "go-ipfs"
 
 //Flags
 var (
@@ -288,6 +300,8 @@ func main() {
 	}
 
 	if os.IsNotExist(err_geth) || os.IsNotExist(err_ipfs) || os.IsNotExist(err_tor) || os.IsNotExist(err_electron){
+		getInstallationLinks()
+
 		//Preparing the Installer Window
 		screen_width := int(win.GetSystemMetrics(win.SM_CXSCREEN))
 		screen_height := int(win.GetSystemMetrics(win.SM_CYSCREEN))
@@ -1229,10 +1243,10 @@ func installGeth(){
 	fileStr := ""
 	if runtime.GOOS == "windows" {
 		//It will change from time to time
-		urlStr = URL_GETH_WINDOWS
+		urlStr = url_geth_windows
 		fileStr = "temp/geth.zip"
 	} else if runtime.GOOS == "linux" {
-		urlStr = URL_GETH_LINUX
+		urlStr = url_geth_linux
 		fileStr = "temp/geth.tar.gz"
 	}
 
@@ -1406,10 +1420,10 @@ func installIPFS(){
 	file := ""
 	if runtime.GOOS == "windows" {
 		//It will change from time to time
-		link = URL_IPFS_WINDOWS
+		link = url_ipfs_windows
 		file = "temp/ipfs.zip"
 	} else if runtime.GOOS == "linux" {
-		link = URL_IPFS_LINUX
+		link = url_ipfs_linux
 		file = "temp/ipfs.tar.gz"
 	}
 
@@ -1474,7 +1488,7 @@ func installTor(){
 	file := ""
 	if runtime.GOOS == "windows" {
 		//It will change from time to time
-		link = URL_TOR_WINDOWS
+		link = url_tor_windows
 		file = "temp/tor.zip"
 	} else if runtime.GOOS == "linux" {
 		//Not yet available
@@ -1524,6 +1538,31 @@ func installTor(){
 		}
 	} else {
 		Println("Failed to install Tor. Can not create the file.")
+	}
+}
+
+/**
+ * These links are often updated, so it is interesting to store them online
+ */
+func getInstallationLinks(){
+	resp, err := http.Get("http://kantcoin.org/links")
+	body, _ := ioutil.ReadAll(resp.Body)
+
+	installationLinks := InstallationLinks{}
+
+	defer closeResponseBody(resp)
+
+	if err == nil{
+		err2 := json.Unmarshal(body, &installationLinks)
+		if err2 == nil{
+			url_geth_windows = installationLinks.UGW
+			url_geth_linux = installationLinks.UGL
+			url_ipfs_windows = installationLinks.UIW
+			url_ipfs_linux = installationLinks.UIL
+			url_tor_windows = installationLinks.UTW
+			geth_folder = installationLinks.GF
+			ipfs_folder = installationLinks.IF
+		}
 	}
 }
 
@@ -2334,15 +2373,15 @@ func initDirectory(){
  * Load the executables map
  */
 func loadExecutables(){
-	add(executables, "windows","ipfs", "ipfs/" + IPFS_FOLDER + "/ipfs.exe")
-	add(executables, "windows","ipfs_backslash", "\\ipfs\\" + IPFS_FOLDER + "\\ipfs.exe")
-	add(executables, "windows","geth", "geth/" + GETH_FOLDER + "/geth.exe")
-	add(executables, "windows","geth_backslash", "\\geth\\" + GETH_FOLDER + "\\geth.exe")
+	add(executables, "windows","ipfs", "ipfs/" +ipfs_folder+ "/ipfs.exe")
+	add(executables, "windows","ipfs_backslash", "\\ipfs\\" +ipfs_folder+ "\\ipfs.exe")
+	add(executables, "windows","geth", "geth/" +geth_folder+ "/geth.exe")
+	add(executables, "windows","geth_backslash", "\\geth\\" +geth_folder+ "\\geth.exe")
 	add(executables, "windows","tor", "tor/Tor/tor.exe")
-	add(executables, "linux","ipfs", "ipfs/" + IPFS_FOLDER + "/ipfs")
-	add(executables, "linux","ipfs_backslash", "ipfs/" + IPFS_FOLDER + "/ipfs")
-	add(executables, "linux","geth", "geth/" + GETH_FOLDER + "/geth")
-	add(executables, "linux","geth_backslash", "geth/" + GETH_FOLDER + "/geth")
+	add(executables, "linux","ipfs", "ipfs/" +ipfs_folder+ "/ipfs")
+	add(executables, "linux","ipfs_backslash", "ipfs/" +ipfs_folder+ "/ipfs")
+	add(executables, "linux","geth", "geth/" +geth_folder+ "/geth")
+	add(executables, "linux","geth_backslash", "geth/" +geth_folder+ "/geth")
 }
 
 /**
