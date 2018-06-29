@@ -158,19 +158,13 @@
     padding-bottom: 6px;
 }
 
-#external_link_container{
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
-
 #share_link{
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
 
-#candidates_thead{
+#candidates_thead, #group_categories_thead, #questions_thead, #parties_thead{
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -196,13 +190,13 @@
     padding-top: 15px;
 }
 
-#candidates_tbody{
+#candidates_tbody, #group_categories_tbody, #parties_tbody, #questions_tbody{
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
 }
 
-#parties_tbody{
+#results_div, statistics_text, #tutorials_div{
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -273,7 +267,7 @@
 }
 
 #connecting_span{
-    color: #9ccc65;
+    color: lightgrey;
     font-weight: lighter;
 }
 
@@ -312,6 +306,16 @@
 #tutorials{
     width: 90%;
     margin-left: 5%;
+}
+
+.results_item_name{
+    margin-left: 20px;
+    font-size: 1.3em;
+    margin-bottom: 5px;
+}
+
+.results_item_description{
+    margin-left: 20px;
 }
 
 .lighter_text {
@@ -403,15 +407,6 @@
 .btn-flat{
     padding-left: 1.4em;
     padding-right: 1.4em;
-}
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #dcdcdc;
-    margin: 0;
-    padding: 0;
 }
 
 .small_button {
@@ -618,4 +613,19 @@ hr {
         min-width: 70%;
         margin-left: 15%;
     }
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #dcdcdc;
+    margin: 0;
+    padding: 0;
+}
+
+img.circle{
+    min-height: 60px;
+    min-width: 60px;
+    margin-top: 3px;
 }

@@ -69,7 +69,7 @@ klang = {
         search_party: "Pesquisar partido",
         search_group: "Pesquisar Grupo",
         search_question: "Pesquisar pergunta",
-        search_campaign: "Pesquisar campanha (IPNS)",
+        search_campaign: "Pesquisar campanha",
         search_voting: "Votação por candidato ou partido",
         search_donations: "Doações por candidato ou partido",
         search_statistics: "Estatísticas por candidato, partido ou Grupo",
@@ -363,8 +363,14 @@ klang = {
         ballots: "Turnos",
         canceled_votes_file: "anulados.xlsx",
         cant_add_enode: "Limite de enodes já atingido",
-        occupancy_rate: "Taxa de ocupação: "
-
+        occupancy_rate: "Taxa de ocupação: ",
+        maximum_group_size: "Tamanho máximo dos grupos",
+        wait_group_complete: "Aguarde até que seu grupo esteja completo",
+        accession_stopped: "Prazo para escolher um grupo encerrado",
+        accession_stopping: "Prazo para escolher um grupo encerrado. Os lugares restantes não são garantidos",
+        stop_group_membership: "Parar a participação nos grupos",
+        stop_group_membership_button: "Parar",
+        unregistered_vault: "Cofre não registrado"
     },
     spanish: {
         lang: "spanish",
@@ -428,7 +434,7 @@ klang = {
         search_party: "Buscar partido",
         search_group: "Buscar grupo",
         search_question: "Buscar pregunta",
-        search_campaign: "Buscar campaña (IPNS)",
+        search_campaign: "Buscar campaña",
         search_voting: "Votación por candidato o partido",
         search_donations: "Donaciones por candidato o partido",
         search_statistics: "Estadísticas por candidato, partido o grupo",
@@ -722,7 +728,14 @@ klang = {
         ballots: "Vueltas",
         canceled_votes_file: "anulados.xlsx",
         cant_add_enode: "Límite de enodes ya alcanzado",
-        occupancy_rate: "Tasa de ocupación: "
+        occupancy_rate: "Tasa de ocupación: ",
+        maximum_group_size: "Tamaño máximo de los grupos",
+        wait_group_complete: "Espera hasta que tu grupo esté completo",
+        accession_stopped: "La fecha límite para elegir un grupo terminó",
+        accession_stopping: "La fecha límite para elegir un grupo terminó. Los lugares restantes no están garantizados",
+        stop_group_membership: "Detener la participación en los grupos",
+        stop_group_membership_button: "Detener",
+        unregistered_vault: "Caja fuerte no registrada"
     },
     english: {
         lang: "english",
@@ -786,7 +799,7 @@ klang = {
         search_party: "Search party",
         search_group: "Search group",
         search_question: "Search question",
-        search_campaign: "Search campaign (IPNS)",
+        search_campaign: "Search campaign",
         search_voting: "Votation per candidate or party",
         search_donations: "Donations per candidate or party",
         search_statistics: "Statistics per candidate, party or group",
@@ -1013,7 +1026,7 @@ klang = {
         login_about: "About",
         login_download: "Download",
         login_title: "Transparent, secure and anonymous elections",
-        login_message: "This site (kantcoin.org) does not store any information about you. However, to interact with election campaigns, you must choose a login provider, which will store your username (phone, email, or document) and a hash code. Before signing up, create a vault and save it in a safe place. Use a strong password. You are solely responsible for the security of your data.",
+        login_message: "This website (kantcoin.org) does not store any information about you. However, to interact with election campaigns, you must choose a login provider, which will store your username (phone, email, or document) and a hash code. Before signing up, create a vault and save it in a safe place. Use a strong password. You are solely responsible for the security of your data.",
         login_create_button: "Create vault",
         login_open_button: "Open vault",
         observers_enodes_label: "Send the election observers' enodes (one per line)",
@@ -1080,7 +1093,14 @@ klang = {
         ballots: "Rounds",
         canceled_votes_file: "canceled.xlsx",
         cant_add_enode: "Enodes limit already reached",
-        occupancy_rate: "Occupancy rate: "
+        occupancy_rate: "Occupancy rate: ",
+        maximum_group_size: "Maximum group size",
+        wait_group_complete: "Wait until your group is complete",
+        accession_stopped: "Deadline for choosing a group has ended",
+        accession_stopping: "Deadline for choosing a group has ended. The remaining places are not guaranteed",
+        stop_group_membership: "Stop group membership",
+        stop_group_membership_button: "Stop",
+        unregistered_vault: "Unregistered vault"
     },
     french:  {
         lang: "french",
@@ -1144,7 +1164,7 @@ klang = {
         search_party: "Rechercher parti",
         search_group: " Rechercher Groupe",
         search_question: " Rechercher question",
-        search_campaign: " Rechercher campagne (IPNS)",
+        search_campaign: " Rechercher campagne",
         search_voting: "Élections par candidat ou parti",
         search_donations: "Dons par candidat ou parti",
         search_statistics: "Statisques par candidat, parti ou Groupe",
@@ -1296,7 +1316,7 @@ klang = {
         current_ballot_label: "Tour actuel",
         stop_round_button_tooltip: "Pour que les électeurs puissent vérifier si leurs votes ont été saisi correctement",
         close_round_button_tooltip: "Pour que les votes soient comptabilisés dans les votes des candidats",
-        stop_round_button: "Arreter",
+        stop_round_button: "Arrêter",
         close_round_button: "Fermer",
         group_categories_select_label: "Catégorie pour créer les groupes",
         create_groups_label: "Créer une quantité determinée de groupes dans la même catégorie",
@@ -1438,7 +1458,14 @@ klang = {
         ballots: "Tours",
         canceled_votes_file: "annules.xlsx",
         cant_add_enode: "Limite des enodes déjà atteinte",
-        occupancy_rate: "Taux d'occupation: "
+        occupancy_rate: "Taux d'occupation: ",
+        maximum_group_size: "Taille maximale des groupes",
+        wait_group_complete: "Attendez que votre groupe soit complet",
+        accession_stopped: "La date limite pour choisir un groupe est terminée",
+        accession_stopping: "La date limite pour choisir un groupe est terminée. Les places restantes ne sont pas garanties",
+        stop_group_membership: "Arrêter la participation dans les groupes",
+        stop_group_membership_button: "Arrêter",
+        unregistered_vault: "Coffre non enregistré"
     }
 }
 

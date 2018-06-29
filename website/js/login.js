@@ -559,7 +559,7 @@ function probablyTor(){
 function hashCode(str) {
     let hash = 0, i, chr
     if (str.length === 0) return hash
-    for (i = 0; i < str.length; i++) {
+    for (let i = 0; i < str.length; i++) {
         chr   = str.charCodeAt(i)
         hash  = ((hash << 5) - hash) + chr
         hash |= 0 // Convert to 32bit integer
@@ -631,9 +631,9 @@ function str2buf(str) {
     if (window.TextEncoder) {
         return new TextEncoder('utf-8').encode(str)
     }
-    var utf8 = encodeURIComponent(str)
-    var result = new Uint8Array(utf8.length);
-    for (var i = 0; i < utf8.length; i++) {
+    let utf8 = encodeURIComponent(str)
+    let result = new Uint8Array(utf8.length);
+    for (let i = 0; i < utf8.length; i++) {
         result[i] = utf8.charCodeAt(i)
     }
     return result
@@ -648,8 +648,8 @@ function buf2str(buffer) {
     if (window.TextDecoder) {
         return new TextDecoder("utf-8").decode(buffer)
     }
-    var result = ""
-    for (var i = 0; i < buffer.length; i++) {
+    let result = ""
+    for (let i = 0; i < buffer.length; i++) {
         result += String.fromCharCode(buffer[i])
     }
     return result

@@ -1775,6 +1775,8 @@ func addProfile(path string, w http.ResponseWriter){
 					err1 = publishIPFS(address, dir)
 					if err1 == nil{
 						fmt.Fprint(w, "complete")
+						//After publishing the file, try to pin it to local storage.
+						pinIPFS(address)
 					} else {
 						fmt.Fprint(w, "error")
 					}
@@ -1840,6 +1842,33 @@ func publishIPFS(address, dir string) *appError{
 		return &appError{err, "Publishing error with the directory " + dir}
 	}
 	return nil
+}
+
+/**
+ * It stores an IPFS object from a given path locally to disk. (all OSs)
+ */
+func pinIPFS(address string){
+	execFile, _ := os.Getwd()
+	execFile += string(os.PathSeparator) + executables[runtime.GOOS]["ipfs_backslash"]
+
+	cmd := exec.Command(execFile,"pin","add", address)
+	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
+	out, err := cmd.Output()
+	outstr := string(out)
+	cmd.Process.Kill()
+
+	if verbose {
+		Println("----------------------------------Command response ----------------------------------")
+		Println(outstr)
+		Println("------------------------------End of command response--------------------------------")
+	}
+
+	if err == nil {
+		Println(address + "was pinned to local storage")
+	} else {
+		Println("Pinning error with the address " + address)
+		Println(err.Error())
+	}
 }
 
 /**

@@ -523,6 +523,15 @@
                             <input id="regexp_input" type="text" />
                             <label id="regexp_label" for="regexp_input"></label>
                         </div>
+                        <div class="input-field col s6">
+                            <select id="maximum_group_size">
+                                <option id="maximum_group_size_label" value="" disabled selected>Maximum group size</option>
+                                <option value="3">3</option>
+                                <option value="9">9</option>
+                                <option value="15">15</option>
+                                <option value="21">21</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col s6">
@@ -750,6 +759,15 @@
                     <div class="row">
                         <a href="#" id="insert_authorized_voters_button" class="waves-effect waves-green btn-flat orange white-text right"></a>
                     </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="row">
+                        <h6><b><span id="stop_group_membership_label"></span></b></h6>
+                    </div>
+                    <div class="row">
+                        <a href="#" id="stop_group_membership_button" class="waves-effect waves-green btn-flat orange white-text"></a>
+                    </div>
                 </div>
                 <div id="admin_chairpersons_tab" class="col s12">
                     <br>
@@ -944,6 +962,7 @@
                    <li class="collection-item"><h6><b><span id="donations_contract_container"></span></b><span id="current_donations_contract_container"></span></h6></li>
                    <li class="collection-item"><h6><b><span id="onion_container"></span></b><span id="current_onion_container"></span></h6></li>
                    <li class="collection-item"><h6><b><span id="regexp_container"></span></b><span id="current_regexp_container"></span></h6></li>
+                   <li class="collection-item"><h6><b><span id="mgz_container"></span></b><span id="current_mgz_container"></span></h6></li>
                </ul>
            </div>
        </li>
@@ -1248,7 +1267,7 @@
     <div class="row center">
         <img id="data_image" src="imgs/data-visualization.jpg">
     </div>
-    <div class="row center blue-grey-text">
+    <div id="statistics_text" class="row center blue-grey-text">
         <h6>[[text]]</h6>
     </div>
     <div class="row center">
@@ -1370,7 +1389,7 @@
         </div>
     </div>
     <br><br>
-    <div class="brown lighten-5">
+    <div id="tutorials_div" class="brown lighten-5">
         <br><br>
         <h5 id="tutorials" class="center grey-text text-darken-2 flow-text"></h5>
         <br><br>
@@ -1405,6 +1424,43 @@
 <div id="confirmed_icon_html" hidden>
     <!--[CDATA[
     <img width="22px" src="imgs/double-tick-blue.png">
+    -->
+</div>
+<div id="results_div_html" hidden>
+    <!--[CDATA[
+    <div id="results_div" class="collection"></div>
+    -->
+</div>
+<div id="results_item_html" hidden>
+    <!--[CDATA[
+    <a href="[url]" class="collection-item avatar">
+      <img src="[image]" alt="" class="circle">
+      <h5 class="blue-grey-text results_item_name">[name]</h5>
+      <span class="grey-text text-darken-2 results_item_description">[description]<br></span>
+      <p class="secondary-content grey-text text-lighten-1 right-align"><span class="hide-on-med-and-down">[period]<br></span><span class="hide-on-small-only">[country]</span></p>
+    </a>
+    -->
+</div>
+<div id="stopping_accession_html" hidden>
+    <!--[CDATA[
+    <div class="center">
+        <div class="chip cyan lighten-4">
+            [message]
+            <i class="close material-icons">close</i>
+        </div>
+    </div>
+    <br>
+    -->
+</div>
+<div id="unregistered_vault_chip_html" hidden>
+    <!--[CDATA[
+    <div class="center">
+        <div class="chip amber lighten-3">
+            [message]
+            <i class="close material-icons">close</i>
+        </div>
+    </div>
+    <br>
     -->
 </div>
 <div id="loader_style_css" hidden><!--[CDATA[<style>.loader{border: 16px solid #f3f3f3;border-radius: 50%;border-top: 16px solid #3498db;width: 100px;height: 100px;-webkit-animation: spin 1.5s linear infinite;animation: spin 1.5s linear infinite;}@-webkit-keyframes spin {0% { -webkit-transform: rotate(0deg);}100%{-webkit-transform: rotate(360deg);}}@keyframes spin {0%{ transform: rotate(0deg);}100%{transform: rotate(360deg);}}</style>--></div>
