@@ -5199,7 +5199,7 @@ function readRegisterVoterMessage(payload){
                 }
 
                 the_contract.giveRightToVote(json_payload.address, json_payload.pubkey.substring(1,2), "0x" + json_payload.pubkey.substring(2), cash)
-                the_contract.addVoterHashcode(hash)
+                the_contract.addVoterHashcode(big_hash)
                 the_contract.defineVoterNTRUHash(json_payload.address, json_payload.ntruhash)
 
                 //It stores the voter in the voters map with an empty group (-2)
