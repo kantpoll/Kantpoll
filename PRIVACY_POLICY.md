@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Thiago Quinalia built the Kantcoin app as an Open Source app. This SERVICE is provided by Thiago Quinalia at no cost and is intended for use as is.
+Thiago Quinalia built the Kantpoll app as an Open Source app. This SERVICE is provided by Thiago Quinalia at no cost and is intended for use as is.
 
 This page is used to inform website visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
 
@@ -8,13 +8,12 @@ If you choose to use my Service, then you agree to the collection and use of inf
 
 ## Information Collection and Use
 
-For a better experience, while using our Service, I may require you to provide us an e-mail or phone number. The information that I request is stored on our databases with a public key (address) and a timestamp. This public key allows you to participate in campaigns that can be searched on our website.
+For a better experience, while using our Service, I may require you to provide us an e-mail or phone number. The information that I request is not stored on our databases. It is only used to generate a certificate, which allows you to participate in campaigns.
 
 The app doesn't allow scripts from other domains from being executed on our page. However, the app does use third party services that may collect information used to identify you. These services, notwithstanding, will be executed in another page, in order to protect your private information.
 
 Link to privacy policy of third party service providers used by the app:
 
-* https://www.google.com/policies/privacy/
 * https://www.account-kit.com/privacy
 * https://aws.amazon.com/compliance/data-privacy-faq/
 
@@ -44,4 +43,4 @@ I may update our Privacy Policy from time to time. Thus, you are advised to revi
 
 ## Contact Us
 
-If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at contact@kantcoin.org .
+If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at https://github.com/thiagogq .
