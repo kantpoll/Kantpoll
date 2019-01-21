@@ -43,4 +43,4 @@ I may update this Privacy Policy from time to time. Thus, you are advised to rev
 
 ## Contact Us
 
-If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at https://github.com/thiagogq .
+If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at kantpoll@kant.city .
