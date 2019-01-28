@@ -3,9 +3,9 @@
 ## Our 10 principles
 
 1. **Transparency** - people should not be fooled or manipulated.
-2. **Privacy** - people should not fear being observed, measured and analysed.
+2. **Privacy** - people should not fear being observed, measured and analyzed.
 3. **Anonymity** - which ensures that people will not be subjected to sanctions or reprimands.
-4. **Safety** - protection of voters' data and communications.
+4. **Security** - protection of voters' data and communications.
 5. **Decentralization** - data about campaigns and candidates should not be subject to censorship.
 6. **Internationalization** - language should not be an obstacle to voter participation.
 7. **Representativeness** - technology should help to bring closer voters to candidates.
